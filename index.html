@@ -1,0 +1,403 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Parmelee - IT Major Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('Portfolio.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #374151;
+        }
+
+        /* Project Card specific styles */
+        .project-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 1.25rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Button specific styles */
+        .btn-primary {
+            background: linear-gradient(to right, #6366f1, #8b5cf6);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(to right, #4f46e5, #7c3aed);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15), 0 3px 6px -2px rgba(0, 0, 0, 0.08);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(to right, #4b5563, #6b7280);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-secondary:hover {
+            background: linear-gradient(to right, #374151, #4b5563);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15), 0 3px 6px -2px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Header animation */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-down {
+            animation: fadeInDown 1s ease-out forwards;
+        }
+
+        /* Carousel specific styles */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none; /* Hidden by default */
+            transition: opacity 0.5s ease-in-out;
+            background-color: #000; /* Fallback for media loading */
+        }
+        .carousel-slide.active {
+            display: block; /* Show active slide */
+            opacity: 1;
+        }
+        .carousel-slide img,
+        .carousel-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Use 'contain' to ensure entire image/video is visible */
+            border-radius: 0.75rem;
+        }
+
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 0.75rem 0.5rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            z-index: 10;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+        .carousel-nav-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .carousel-nav-btn.prev {
+            left: 0.5rem;
+        }
+        .carousel-nav-btn.next {
+            right: 0.5rem;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .carousel-dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="min-h-screen flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
+
+        <!-- Header Section -->
+        <header class="text-center mb-12 w-full max-w-4xl animate-fade-in-down">
+            <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight">
+                Andrew Parmelee
+            </h1>
+            <p class="text-xl sm:text-2xl text-indigo-700 font-bold drop-shadow-sm">
+                IT Major at University of Central Florida
+            </p>
+            <p class="mt-4 text-lg text-gray-700 leading-relaxed">
+                Welcome to my portfolio! Here you'll find a selection of projects demonstrating my skills in web development, game development, and problem-solving.
+            </p>
+        </header>
+
+        <!-- Projects Section -->
+        <section class="w-full max-w-5xl">
+            <h2 class="text-4xl font-bold text-gray-800 mb-10 text-center">My Projects</h2>
+
+            <!-- Project Card: CramCraft -->
+            <div class="project-card p-8 mb-12 flex flex-col lg:flex-row items-start lg:space-x-8">
+                <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-3">CramCraft</h3>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        A website built for my class "Understanding Human Computer Interactions." I developed the entire front-end from raw HTML, CSS, and JavaScript, collaborating with a small group of people. We utilized GitHub for version control and Supabase to set up the database. Users can log in and create accounts, make their own flashcards for any subject, and share them. Unlike Quizlet, it features a unique option to print flashcards double-sided with terms and definitions flipped, allowing for easy cutting and physical use. It also includes a bulk import option for direct uploads from Quizlet.
+                    </p>
+                    <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
+                    <ul class="list-disc list-inside text-gray-700 mb-4 space-y-1">
+                        <li>HTML, CSS, JavaScript</li>
+                        <li>GitHub (for collaboration)</li>
+                        <li>Supabase (for database)</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://alparmelee.github.io/FlashcardMaker/" target="_blank" class="btn-primary">
+                            Live Demo
+                        </a>
+                        <!-- No GitHub link provided for CramCraft, so omitting -->
+                    </div>
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <div class="carousel-container" data-carousel-id="cramcraft">
+                        <div class="carousel-slide">
+                            <img src="cramcraft3.png" alt="CramCraft Screenshot 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="cramcraft2.png" alt="CramCraft Screenshot 2">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="cramcraft1.png" alt="CramCraft Screenshot 2">
+                        </div>
+                        <button class="carousel-nav-btn prev" aria-label="Previous Slide">&#10094;</button>
+                        <button class="carousel-nav-btn next" aria-label="Next Slide">&#10095;</button>
+                        <div class="carousel-dots"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card: On Your Feet -->
+            <div class="project-card p-8 mb-12 flex flex-col lg:flex-row-reverse items-start lg:space-x-reverse lg:space-x-8">
+                <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-3">On Your Feet</h3>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        A platformer video game still in development, which I'm working on for fun with a friend majoring in digital media. I've used Unity as the game engine and C# as the programming language. Currently, the player is able to navigate different levels and perform various actions including jumping, crouching, kicking the ball (normal, charge kick, kick up, kick ball behind, rabona kick, bicycle kick), crawling, and executing a victory slide upon completing a level. The player can also get hit and die from enemies. We are still actively developing new levels and features.
+                    </p>
+                    <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
+                    <ul class="list-disc list-inside text-gray-700 mb-4 space-y-1">
+                        <li>Unity (Game Engine)</li>
+                        <li>C# (Programming Language)</li>
+                    </ul>
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <div class="carousel-container" data-carousel-id="onyourfeet">
+                        <div class="carousel-slide">
+                            <img src="onyourfeet2.png" alt="On Your Feet Screenshot 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="onyourfeet1.png" alt="On Your Feet Screenshot 2">
+                        </div>
+                        <button class="carousel-nav-btn prev" aria-label="Previous Slide">&#10094;</button>
+                        <button class="carousel-nav-btn next" aria-label="Next Slide">&#10095;</button>
+                        <div class="carousel-dots"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card: UCF Search -->
+            <div class="project-card p-8 mb-12 flex flex-col lg:flex-row items-start lg:space-x-8">
+                <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-3">UCF Search</h3>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        One of the earliest programs I developed independently. MyUCF, the university's portal, lacks a direct search feature. For example, to find "add classes," one typically has to navigate through multiple clicks: MyUCF -> Student Self Service -> Student Records -> Enrollment -> "Add Classes." This process is quite tedious. To streamline this, I created a program using HTML, CSS, and JavaScript where users can simply type what they're looking for and receive a direct link to the relevant MyUCF page, making navigation significantly easier.
+                    </p>
+                    <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
+                    <ul class="list-disc list-inside text-gray-700 mb-4 space-y-1">
+                        <li>HTML, CSS, JavaScript</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://alparmelee.github.io/MyUCF-Search/" target="_blank" class="btn-primary">
+                            Live Demo
+                        </a>
+                        <!-- No GitHub link provided for UCF Search, so omitting -->
+                    </div>
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <div class="carousel-container" data-carousel-id="ucfsearch">
+                        <div class="carousel-slide">
+                            <img src="ucf.png" alt="UCF Search Screenshot 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="ucf1.png" alt="UCF Search Screenshot 2">
+                        </div>
+                        <div class="carousel-slide active">
+                        <button class="carousel-nav-btn prev" aria-label="Previous Slide">&#10094;</button>
+                        <button class="carousel-nav-btn next" aria-label="Next Slide">&#10095;</button>
+                        <div class="carousel-dots"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card: CodeCrunch -->
+            <div class="project-card p-8 mb-12 flex flex-col lg:flex-row-reverse items-start lg:space-x-reverse lg:space-x-8">
+                <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-3">CodeCrunch</h3>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Finally, I developed CodeCrunch, a website built using HTML, CSS, and JavaScript, specifically for creating calculators. These calculators cover a range of subjects including Physics, Trigonometry, Statistics, Discrete Math, and even technical classes like Computer Science 1. This project was primarily used to help me check my work and to serve as a quick reference for formulas that I could always revisit when needed.
+                    </p>
+                    <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
+                    <ul class="list-disc list-inside text-gray-700 mb-4 space-y-1">
+                        <li>HTML, CSS, JavaScript</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://alparmelee.github.io/CodeCrunch/index.html" target="_blank" class="btn-primary">
+                            Live Demo
+                        </a>
+                        <!-- No GitHub link provided for CodeCrunch, so omitting -->
+                    </div>
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <div class="carousel-container" data-carousel-id="codecrunch">
+                        <div class="carousel-slide">
+                            <img src="codecrunch1.png" alt="CodeCrunch Screenshot 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="codecrunch2.png" alt="CodeCrunch Screenshot 2">
+                        </div>
+                        <button class="carousel-nav-btn prev" aria-label="Previous Slide">&#10094;</button>
+                        <button class="carousel-nav-btn next" aria-label="Next Slide">&#10095;</button>
+                        <div class="carousel-dots"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="mt-12 text-center text-gray-600 text-sm">
+            <p>&copy; 2025 Andrew Parmelee. All rights reserved.</p>
+            <p>IT Major, University of Central Florida</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Select all carousel containers
+            const carousels = document.querySelectorAll('.carousel-container');
+
+            carousels.forEach(carousel => {
+                const slides = carousel.querySelectorAll('.carousel-slide');
+                const prevBtn = carousel.querySelector('.carousel-nav-btn.prev');
+                const nextBtn = carousel.querySelector('.carousel-nav-btn.next');
+                const dotsContainer = carousel.querySelector('.carousel-dots');
+                let currentSlideIndex = 0;
+
+                // Create dot indicators
+                slides.forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('carousel-dot');
+                    if (index === 0) {
+                        dot.classList.add('active');
+                    }
+                    dot.addEventListener('click', () => showSlide(index));
+                    dotsContainer.appendChild(dot);
+                });
+
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+
+                // Function to show a specific slide
+                function showSlide(index) {
+                    // Pause all videos before changing slide
+                    slides.forEach(slide => {
+                        const video = slide.querySelector('video');
+                        if (video) {
+                            video.pause();
+                        }
+                        slide.classList.remove('active');
+                    });
+
+                    // Deactivate all dots
+                    dots.forEach(dot => dot.classList.remove('active'));
+
+                    // Activate the selected slide and dot
+                    slides[index].classList.add('active');
+                    dots[index].classList.add('active');
+
+                    // If the active slide contains a video, play it
+                    const activeVideo = slides[index].querySelector('video');
+                    if (activeVideo) {
+                        activeVideo.play();
+                    }
+
+                    currentSlideIndex = index;
+                }
+
+                // Function to go to the next slide
+                function nextSlide() {
+                    let newIndex = currentSlideIndex + 1;
+                    if (newIndex >= slides.length) {
+                        newIndex = 0; // Loop back to the first slide
+                    }
+                    showSlide(newIndex);
+                }
+
+                // Function to go to the previous slide
+                function prevSlide() {
+                    let newIndex = currentSlideIndex - 1;
+                    if (newIndex < 0) {
+                        newIndex = slides.length - 1; // Loop to the last slide
+                    }
+                    showSlide(newIndex);
+                }
+
+                // Event listeners for navigation buttons
+                prevBtn.addEventListener('click', prevSlide);
+                nextBtn.addEventListener('click', nextSlide);
+
+                // Initialize the first slide
+                showSlide(currentSlideIndex);
+            });
+        });
+    </script>
+</body>
+</html>
