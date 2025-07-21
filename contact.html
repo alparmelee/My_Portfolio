@@ -195,6 +195,14 @@
         let auth;
         let userId;
 
+        // Function to generate a simple UUID-like string if crypto.randomUUID is not available
+        function generateSimpleUUID() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
         // Function to initialize Firebase and authenticate
         async function initializeFirebase() {
             console.log("Initializing Firebase...");
@@ -219,8 +227,17 @@
                 console.log("Attempting anonymous sign-in...");
                 await signInAnonymously(auth);
                 
-                userId = auth.currentUser?.uid || crypto.randomUUID(); // Get UID or generate random for anonymous
+                // After sign-in, auth.currentUser should be populated.
+                // Ensure userId is set here, after the await, with a robust fallback.
+                userId = auth.currentUser?.uid;
+                if (!userId) {
+                    userId = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+                             ? crypto.randomUUID()
+                             : generateSimpleUUID();
+                    console.warn("auth.currentUser.uid was null. Generated userId:", userId);
+                }
                 console.log("Firebase initialized and authenticated successfully. User ID:", userId);
+
             } catch (error) {
                 console.error("Error initializing Firebase or authenticating:", error);
                 displayStatus(`Failed to initialize the contact form: ${error.message}. Please try again later.`, "error");
@@ -255,6 +272,9 @@
                     return;
                 }
 
+                // Log userId right before sending to Firestore to confirm its value
+                console.log("Submitting with userId:", userId);
+
                 try {
                     // Store the submission in Firestore
                     // The collection path will now use firebaseConfig.projectId as the appId
@@ -263,7 +283,7 @@
                         email: email,
                         message: message,
                         timestamp: new Date(),
-                        userId: userId // Store the user ID for traceability
+                        userId: userId // Use the robustly generated userId
                     });
                     console.log("Document written with ID: ", docRef.id);
                     displayStatus("Your message has been sent successfully!", "success");
