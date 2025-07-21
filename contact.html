@@ -275,7 +275,7 @@
                         // that integrates with an email service (e.g., SendGrid, Mailgun, Resend).
                         //
                         // Example (conceptual, requires backend):
-                        /*
+
                         await fetch('/api/send-email', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -285,7 +285,6 @@
                                 body: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
                             })
                         });
-                        */
                     }
                 } catch (e) {
                     console.error("Unexpected error during submission:", e);
