@@ -225,16 +225,13 @@
 
                 // For static hosting, we typically sign in anonymously for public writes
                 console.log("Attempting anonymous sign-in...");
-                await signInAnonymously(auth);
+                const userCredential = await signInAnonymously(auth); // Store the credential
                 
-                // After sign-in, auth.currentUser should be populated.
-                // Ensure userId is set here, after the await, with a robust fallback.
-                userId = auth.currentUser?.uid;
+                // Ensure userId is set here, directly from the userCredential, or use fallback
+                userId = userCredential.user?.uid;
                 if (!userId) {
-                    userId = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
-                             ? crypto.randomUUID()
-                             : generateSimpleUUID();
-                    console.warn("auth.currentUser.uid was null. Generated userId:", userId);
+                    userId = generateSimpleUUID(); // Always use generateSimpleUUID if UID is not available
+                    console.warn("User UID was null after anonymous sign-in. Generated userId using fallback:", userId);
                 }
                 console.log("Firebase initialized and authenticated successfully. User ID:", userId);
 
@@ -297,3 +294,4 @@
     </script>
 </body>
 </html>
+
