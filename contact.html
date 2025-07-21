@@ -172,9 +172,14 @@
         // Import Supabase client
         import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-        // IMPORTANT: Replace these with your actual Supabase project URL and Anon Key
-        const SUPABASE_URL = 'https://supabase.com/dashboard/project/wbuytyvbajiplqisulcs/settings/api-keys';
+        // Supabase project URL and Anon Key
+        const SUPABASE_URL = 'https://wbuytyvbajiplqisulcs.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndidXl0eXZiYWppcGxxaXN1bGNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMwOTI1NDcsImV4cCI6MjA2ODY2ODU0N30.Ml8JJe3OHXeY4pzDaofB3JUj6fNDIJ-n-iNEYGBvJks';
+
+        // IMPORTANT: This URL MUST be the exact Invoke URL of your deployed Supabase Edge Function.
+        // Go to your Supabase Dashboard -> Edge Functions -> Click on 'send-email' -> Copy the 'Invoke URL'.
+        const EDGE_FUNCTION_URL = 'https://wbuytyvbajiplqisulcs.supabase.co/functions/v1/send-email';
+
 
         let supabase;
         let userId;
@@ -246,8 +251,8 @@
                 console.log("Submitting with userId:", userId);
 
                 try {
-                    // Store the submission in Supabase
-                    const { data, error } = await supabase
+                    // Step 1: Store the submission in Supabase Database
+                    const { data: dbData, error: dbError } = await supabase
                         .from('contact_submissions') // Ensure this table exists in your Supabase project
                         .insert([
                             {
@@ -259,35 +264,39 @@
                             }
                         ]);
 
-                    if (error) {
-                        console.error("Error inserting data into Supabase:", error);
-                        displayStatus(`Failed to send your message: ${error.message}. Please try again.`, "error");
+                    if (dbError) {
+                        console.error("Error inserting data into Supabase:", dbError);
+                        displayStatus(`Failed to save message: ${dbError.message}. Please try again.`, "error");
+                        return; // Stop if database insert fails
                     } else {
-                        console.log("Data inserted successfully into Supabase:", data);
-                        displayStatus("Your message has been sent successfully!", "success");
-                        contactForm.reset(); // Clear the form
-
-                        // --- Email Sending Note ---
-                        // IMPORTANT: Sending emails directly from client-side JavaScript is not secure
-                        // (it would expose your email service API keys).
-                        // For actual email sending, you would typically use a server-side solution
-                        // like a Supabase Edge Function, a Netlify Function, or a custom backend
-                        // that integrates with an email service (e.g., SendGrid, Mailgun, Resend).
-                        //
-                        // Example (conceptual, requires backend):
-
-                        await fetch('/api/send-email', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                to: 'andrew@parmelee.us',
-                                subject: `New Contact Form Submission from ${name}`,
-                                body: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
-                            })
-                        });
+                        console.log("Data inserted successfully into Supabase:", dbData);
                     }
+
+                    // Step 2: Call the Supabase Edge Function to send email
+                    console.log("Calling Edge Function to send email...");
+                    const response = await fetch(EDGE_FUNCTION_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}` // Include Anon Key for Edge Function auth if RLS is enabled on function
+                        },
+                        body: JSON.stringify({ name, email, message })
+                    });
+
+                    const result = await response.json();
+
+                    if (!response.ok) {
+                        console.error("Error from Edge Function:", result.error);
+                        // Provide more specific feedback if the function returns an error message
+                        displayStatus(`Message saved, but failed to send email: ${result.error || 'Unknown error from server'}.`, "error");
+                    } else {
+                        console.log("Edge Function response:", result.message);
+                        displayStatus("Your message has been sent and email notification triggered!", "success");
+                        contactForm.reset(); // Clear the form only after both operations succeed
+                    }
+
                 } catch (e) {
-                    console.error("Unexpected error during submission:", e);
+                    console.error("Unexpected error during submission or email trigger:", e);
                     displayStatus(`An unexpected error occurred: ${e.message}. Please try again.`, "error");
                 }
             });
