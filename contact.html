@@ -138,7 +138,9 @@
 
     <main class="w-full max-w-2xl">
         <div class="contact-form-card">
-            <form id="contactForm" class="space-y-6">
+            <!-- Formspree Integration -->
+            <!-- IMPORTANT: The action attribute now points to your specific Formspree endpoint -->
+            <form id="contactForm" action="https://formspree.io/f/xqaleolw" method="POST" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -169,149 +171,36 @@
     </footer>
 
     <script type="module">
-        // Import Supabase client
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+        // This script will now handle displaying the status message after Formspree redirects/submits.
+        // Formspree handles the actual submission and email sending directly via the form's 'action' attribute.
 
-        // Supabase project URL and Anon Key
-        const SUPABASE_URL = 'https://wbuytyvbajiplqisulcs.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndidXl0eXZiYWppcGxxaXN1bGNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMwOTI1NDcsImV4cCI6MjA2ODY2ODU0N30.Ml8JJe3OHXeY4pzDaofB3JUj6fNDIJ-n-iNEYGBvJks';
-
-        // IMPORTANT: This URL MUST be the exact Invoke URL of your deployed Supabase Edge Function.
-        // Go to your Supabase Dashboard -> Edge Functions -> Click on 'send-email' -> Copy the 'Invoke URL'.
-        const EDGE_FUNCTION_URL = 'https://wbuytyvbajiplqisulcs.supabase.co/functions/v1/send-email';
-
-
-        let supabase;
-        let userId;
-
-        // Function to generate a simple UUID-like string
-        function generateSimpleUUID() {
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-        }
-
-        // Function to initialize Supabase
-        async function initializeSupabase() {
-            console.log("Initializing Supabase...");
-
-            if (SUPABASE_URL === 'YOUR_SUPABASE_URL' || SUPABASE_ANON_KEY === 'YOUR_SUPABASE_ANON_KEY') {
-                const errorMessage = "Supabase configuration is incomplete. Please replace 'YOUR_SUPABASE_URL' and 'YOUR_SUPABASE_ANON_KEY' with your actual project credentials.";
-                console.error(errorMessage);
-                displayStatus(`Failed to initialize the contact form: ${errorMessage}`, "error");
-                return false; // Indicate initialization failure
-            }
-
-            try {
-                supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                userId = generateSimpleUUID(); // Generate a unique ID for each session/submission
-                console.log("Supabase initialized successfully. Generated User ID for this session:", userId);
-                return true; // Indicate successful initialization
-            } catch (error) {
-                console.error("Error initializing Supabase:", error);
-                displayStatus(`Failed to initialize the contact form: ${error.message}. Please try again later.`, "error");
-                return false; // Indicate initialization failure
-            }
-        }
-
-        // Function to display form status messages
-        function displayStatus(message, type) {
+        document.addEventListener('DOMContentLoaded', () => {
             const formStatusDiv = document.getElementById('formStatus');
-            formStatusDiv.textContent = message;
-            formStatusDiv.classList.remove('hidden', 'status-success', 'status-error', 'status-info');
-            formStatusDiv.classList.add(`status-${type}`);
-        }
-
-        // Handle form submission
-        document.addEventListener('DOMContentLoaded', async () => {
-            const isSupabaseReady = await initializeSupabase(); // Initialize Supabase when DOM is ready
-
             const contactForm = document.getElementById('contactForm');
-            contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault(); // Prevent default form submission
 
-                if (!isSupabaseReady) {
-                    displayStatus("Form is not ready. Supabase initialization failed.", "error");
-                    return;
-                }
-
-                displayStatus("Sending your message...", "info"); // Display a neutral status
-
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const message = document.getElementById('message').value;
-
-                if (!supabase) {
-                    displayStatus("Supabase client not initialized. Please refresh the page.", "error");
-                    console.error("Supabase client instance is null or undefined.");
-                    return;
-                }
-
-                console.log("Submitting with userId:", userId);
-
-                try {
-                    // Step 1: Store the submission in Supabase Database
-                    const { data: dbData, error: dbError } = await supabase
-                        .from('contact_submissions') // Ensure this table exists in your Supabase project
-                        .insert([
-                            {
-                                name: name,
-                                email: email,
-                                message: message,
-                                timestamp: new Date().toISOString(), // Use ISO string for Supabase timestamp
-                                user_id: userId // Use 'user_id' for consistency with database column names
-                            }
-                        ]);
-
-                    if (dbError) {
-                        console.error("Error inserting data into Supabase:", dbError);
-                        displayStatus(`Failed to save message: ${dbError.message}. Please try again.`, "error");
-                        return; // Stop if database insert fails
-                    } else {
-                        console.log("Data inserted successfully into Supabase:", dbData);
-                    }
-
-                    // Step 2: Call the Supabase Edge Function to send email
-                    console.log("Calling Edge Function to send email...");
-                    const response = await fetch(EDGE_FUNCTION_URL, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}` // Include Anon Key for Edge Function auth if RLS is enabled on function
-                        },
-                        body: JSON.stringify({ name, email, message })
-                    });
-
-                    // Check if the network request itself failed (e.g., CORS, DNS, unreachable server)
-                    if (!response.ok && response.type === 'opaque') { // 'opaque' response type often indicates CORS or network issue
-                        console.error("Network request to Edge Function failed. This could be a CORS issue, incorrect URL, or function not running.");
-                        displayStatus("Message saved, but failed to send email: Network error. Check console for CORS or function deployment issues.", "error");
-                        return;
-                    }
-
-                    const result = await response.json();
-
-                    if (!response.ok) {
-                        console.error("Error from Edge Function:", result.error);
-                        // Provide more specific feedback if the function returns an error message
-                        displayStatus(`Message saved, but failed to send email: ${result.error || 'Unknown error from server'}.`, "error");
-                    } else {
-                        console.log("Edge Function response:", result.message);
-                        displayStatus("Your message has been sent and email notification triggered!", "success");
-                        contactForm.reset(); // Clear the form only after both operations succeed
-                    }
-
-                } catch (e) {
-                    console.error("Unexpected error during submission or email trigger:", e);
-                    // Differentiate between a network error (TypeError) and other errors
-                    if (e instanceof TypeError && e.message === 'Failed to fetch') {
-                        displayStatus("An unexpected network error occurred. Please check your internet connection or if the Edge Function URL is correct and accessible.", "error");
-                    } else {
-                        displayStatus(`An unexpected error occurred: ${e.message}. Please try again.`, "error");
-                    }
-                }
+            // Listen for the 'submit' event to show a "sending" message immediately
+            contactForm.addEventListener('submit', () => {
+                displayStatus("Sending your message...", "info");
             });
+
+            // Formspree typically redirects or uses AJAX. For simple HTML forms,
+            // it will redirect to a success page or back to your page with a query parameter.
+            // We can check for a success parameter in the URL.
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('success') && urlParams.get('success') === 'true') {
+                displayStatus("Your message has been sent successfully!", "success");
+                // Clear the query parameter from the URL to prevent re-display on refresh
+                history.replaceState({}, document.title, window.location.pathname);
+            } else if (urlParams.has('error')) {
+                displayStatus("Failed to send your message. Please try again.", "error");
+                history.replaceState({}, document.title, window.location.pathname);
+            }
+
+            function displayStatus(message, type) {
+                formStatusDiv.textContent = message;
+                formStatusDiv.classList.remove('hidden', 'status-success', 'status-error', 'status-info');
+                formStatusDiv.classList.add(`status-${type}`);
+            }
         });
     </script>
 </body>
