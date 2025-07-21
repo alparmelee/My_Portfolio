@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Parmelee - Contact</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="icon.png">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('Portfolio.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #374151;
+        }
+
+        /* Reusing .project-card styles for the contact form container */
+        .contact-form-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 1.25rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            padding: 2.5rem; /* Increased padding */
+        }
+        .contact-form-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Button specific styles (retained from portfolio) */
+        .btn-primary {
+            background: linear-gradient(to right, #6366f1, #8b5cf6);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(to right, #4f46e5, #7c3aed);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15), 0 3px 6px -2px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Header animation (retained) */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-down {
+            animation: fadeInDown 1s ease-out forwards;
+        }
+
+        /* Form specific styles */
+        .form-group {
+            margin-bottom: 1.5rem; /* Increased spacing between form groups */
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600; /* Semi-bold */
+            color: #4a5568; /* Darker grey for labels */
+            font-size: 1rem;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem; /* More padding */
+            border: 1px solid #cbd5e0; /* Lighter border */
+            border-radius: 0.5rem; /* Rounded corners */
+            font-size: 1rem;
+            background-color: #f7fafc; /* Light background */
+            color: #2d3748; /* Dark text */
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        textarea {
+            min-height: 120px; /* Taller textarea */
+            resize: vertical;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #6366f1; /* Highlight border on focus */
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); /* Soft shadow on focus */
+        }
+        .submit-button-container {
+            margin-top: 2rem;
+            text-align: left; /* Align button to the left as in image */
+        }
+        .submit-button-container .btn-primary {
+            display: inline-flex; /* To align arrow icon */
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .status-message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .status-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
+    <header class="text-center mb-12 w-full max-w-2xl animate-fade-in-down">
+        <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight">
+            Get in touch
+        </h1>
+        <p class="text-xl sm:text-2xl text-gray-700 font-bold drop-shadow-sm">
+            Want to work together? Fill out the form below and I'll get back to you as soon as I can.
+        </p>
+    </header>
+
+    <main class="w-full max-w-2xl">
+        <div class="contact-form-card">
+            <form id="contactForm" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required class="w-full">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required class="w-full">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Type your message here..." rows="6" required class="w-full"></textarea>
+                </div>
+                <div class="submit-button-container">
+                    <button type="submit" class="btn-primary">
+                        Send message <span aria-hidden="true">&rarr;</span>
+                    </button>
+                </div>
+                <div id="formStatus" class="status-message hidden"></div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="mt-12 text-center text-gray-600 text-sm">
+        <p>&copy; 2025 Andrew Parmelee. All rights reserved.</p>
+        <p>IT Major, University of Central Florida</p>
+    </footer>
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Your actual Firebase project configuration for GitHub Pages
+        const firebaseConfig = {
+            apiKey: "AIzaSyBcXL6KImKXKj7e1P-nxe2c3edM6RZaWbY",
+            authDomain: "email-sender-832ae.firebaseapp.com",
+            projectId: "email-sender-832ae",
+            storageBucket: "email-sender-832ae.firebasestorage.app",
+            messagingSenderId: "325483637968",
+            appId: "1:325483637968:web:a16939c18ac547f4b5c2d5",
+            measurementId: "G-FFSGEQFDE0" // Optional, if you use Google Analytics for Firebase
+        };
+
+        // For static hosting, we'll use the projectId as the appId for collection paths,
+        // and initialAuthToken will be null as it's not provided by static environments.
+        const appId = firebaseConfig.projectId;
+        const initialAuthToken = null; // No custom token for static hosting
+
+        let app;
+        let db;
+        let auth;
+        let userId;
+
+        // Function to initialize Firebase and authenticate
+        async function initializeFirebase() {
+            console.log("Initializing Firebase...");
+            console.log("App ID (for collections):", appId);
+            console.log("Firebase Config (parsed):", firebaseConfig);
+            console.log("Initial Auth Token provided:", initialAuthToken ? "Yes" : "No (expected for static hosting)");
+
+            // Check if firebaseConfig or projectId is missing (should not happen with hardcoded config)
+            if (!firebaseConfig || !firebaseConfig.projectId) {
+                const errorMessage = "Firebase configuration is incomplete. 'projectId' is missing. This should not happen with the hardcoded configuration. Please check the firebaseConfig object.";
+                console.error(errorMessage);
+                displayStatus(`Failed to initialize the contact form: ${errorMessage}`, "error");
+                return; // Stop initialization if config is bad
+            }
+
+            try {
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // For static hosting, we typically sign in anonymously for public writes
+                console.log("Attempting anonymous sign-in...");
+                await signInAnonymously(auth);
+                
+                userId = auth.currentUser?.uid || crypto.randomUUID(); // Get UID or generate random for anonymous
+                console.log("Firebase initialized and authenticated successfully. User ID:", userId);
+            } catch (error) {
+                console.error("Error initializing Firebase or authenticating:", error);
+                displayStatus(`Failed to initialize the contact form: ${error.message}. Please try again later.`, "error");
+            }
+        }
+
+        // Function to display form status messages
+        function displayStatus(message, type) {
+            const formStatusDiv = document.getElementById('formStatus');
+            formStatusDiv.textContent = message;
+            formStatusDiv.classList.remove('hidden', 'status-success', 'status-error', 'status-info');
+            formStatusDiv.classList.add(`status-${type}`);
+        }
+
+        // Handle form submission
+        document.addEventListener('DOMContentLoaded', async () => {
+            await initializeFirebase(); // Initialize Firebase when DOM is ready
+
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault(); // Prevent default form submission
+
+                displayStatus("Sending your message...", "info"); // Display a neutral status
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                if (!db) {
+                    displayStatus("Database not initialized. Please refresh the page.", "error");
+                    console.error("Firestore database instance (db) is null or undefined.");
+                    return;
+                }
+
+                try {
+                    // Store the submission in Firestore
+                    // The collection path will now use firebaseConfig.projectId as the appId
+                    const docRef = await addDoc(collection(db, `artifacts/${appId}/public/data/contact_submissions`), {
+                        name: name,
+                        email: email,
+                        message: message,
+                        timestamp: new Date(),
+                        userId: userId // Store the user ID for traceability
+                    });
+                    console.log("Document written with ID: ", docRef.id);
+                    displayStatus("Your message has been sent successfully!", "success");
+                    contactForm.reset(); // Clear the form
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                    displayStatus(`Failed to send your message: ${e.message}. Please try again.`, "error");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
