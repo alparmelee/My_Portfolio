@@ -156,12 +156,50 @@
             background-color: white;
             transform: scale(1.2);
         }
+
+        /* Navbar specific styles */
+        .navbar {
+            position: fixed; /* Keep navbar at the top */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly less transparent than cards */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000; /* Ensure it's above other content */
+            border-bottom-left-radius: 1.25rem; /* Rounded bottom corners */
+            border-bottom-right-radius: 1.25rem;
+        }
+        .navbar-link {
+            color: #4a5568; /* Dark grey text */
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease-in-out;
+        }
+        .navbar-link:hover {
+            background-color: #e2e8f0; /* Light grey on hover */
+            color: #2d3748; /* Darker text on hover */
+        }
+        .navbar-link.active {
+            background: linear-gradient(to right, #6366f1, #8b5cf6); /* Primary button gradient */
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body class="antialiased">
     <div class="min-h-screen flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
 
-        <header class="text-center mb-12 w-full max-w-4xl animate-fade-in-down">
+        <!-- Navigation Bar -->
+        <nav class="navbar w-full py-4 px-6 flex justify-center">
+            <div class="flex space-x-6">
+                <a href="index.html" class="navbar-link active">Work</a>
+                <a href="about.html" class="navbar-link">About</a>
+                <a href="contact.html" class="navbar-link">Contact</a>
+            </div>
+        </nav>
+
+        <header class="text-center mb-12 w-full max-w-4xl animate-fade-in-down mt-20"> <!-- Added mt-20 for space below navbar -->
             <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight">
                 Andrew Parmelee
             </h1>
@@ -368,93 +406,122 @@
                 </div>
             </div>
 
+            <div class="project-card p-8 mb-12 flex flex-col lg:flex-row items-start lg:space-x-8">
+                <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-3">CodeCrunch</h3>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Finally, I developed CodeCrunch, a website built using HTML, CSS, and JavaScript, specifically for creating calculators. These calculators cover a range of subjects including Physics, Trigonometry, Statistics, Discrete Math, and even technical classes like Computer Science 1. This project was primarily used to help me check my work and to serve as a quick reference for formulas that I could always revisit when needed.
+                    </p>
+                    <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
+                    <ul class="list-disc list-inside text-gray-700 mb-4 space-y-1">
+                        <li>HTML, CSS, JavaScript</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://alparmelee.github.io/CodeCrunch/index.html" target="_blank" class="btn-primary">
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 w-full">
+                    <div class="carousel-container" data-carousel-id="codecrunch">
+                        <div class="carousel-slide">
+                            <img src="codecrunch1.png" alt="CodeCrunch Screenshot 1">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="codecrunch2.png" alt="CodeCrunch Screenshot 2">
+                        </div>
+                        <button class="carousel-nav-btn prev" aria-label="Previous Slide">&#10094;</button>
+                        <button class="carousel-nav-btn next" aria-label="Next Slide">&#10095;</button>
+                        <div class="carousel-dots"></div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <footer class="mt-12 text-center text-gray-600 text-sm">
-            <p>&copy; 2025 Andrew Parmelee. All rights reserved.</p>
-            <p>IT Major, University of Central Florida</p>
-        </footer>
-    </div>
+        <footer class="mt-12 text-center text-gray-600 text-sm">
+            <p>&copy; 2025 Andrew Parmelee. All rights reserved.</p>
+            <p>IT Major, University of Central Florida</p>
+        </footer>
+    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Select all carousel containers
-            const carousels = document.querySelectorAll('.carousel-container');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Select all carousel containers
+            const carousels = document.querySelectorAll('.carousel-container');
 
-            carousels.forEach(carousel => {
-                const slides = carousel.querySelectorAll('.carousel-slide');
-                const prevBtn = carousel.querySelector('.carousel-nav-btn.prev');
-                const nextBtn = carousel.querySelector('.carousel-nav-btn.next');
-                const dotsContainer = carousel.querySelector('.carousel-dots');
-                let currentSlideIndex = 0;
+            carousels.forEach(carousel => {
+                const slides = carousel.querySelectorAll('.carousel-slide');
+                const prevBtn = carousel.querySelector('.carousel-nav-btn.prev');
+                const nextBtn = carousel.querySelector('.carousel-nav-btn.next');
+                const dotsContainer = carousel.querySelector('.carousel-dots');
+                let currentSlideIndex = 0;
 
-                // Create dot indicators
-                slides.forEach((_, index) => {
-                    const dot = document.createElement('span');
-                    dot.classList.add('carousel-dot');
-                    if (index === 0) {
-                        dot.classList.add('active');
-                    }
-                    dot.addEventListener('click', () => showSlide(index));
-                    dotsContainer.appendChild(dot);
-                });
+                // Create dot indicators
+                slides.forEach((_, index) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('carousel-dot');
+                    if (index === 0) {
+                        dot.classList.add('active');
+                    }
+                    dot.addEventListener('click', () => showSlide(index));
+                    dotsContainer.appendChild(dot);
+                });
 
-                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
 
-                // Function to show a specific slide
-                function showSlide(index) {
-                    // Pause all videos before changing slide
-                    slides.forEach(slide => {
-                        const video = slide.querySelector('video');
-                        if (video) {
-                            video.pause();
-                        }
-                        slide.classList.remove('active');
-                    });
+                // Function to show a specific slide
+                function showSlide(index) {
+                    // Pause all videos before changing slide
+                    slides.forEach(slide => {
+                        const video = slide.querySelector('video');
+                        if (video) {
+                            video.pause();
+                        }
+                        slide.classList.remove('active');
+                    });
 
-                    // Deactivate all dots
-                    dots.forEach(dot => dot.classList.remove('active'));
+                    // Deactivate all dots
+                    dots.forEach(dot => dot.classList.remove('active'));
 
-                    // Activate the selected slide and dot
-                    slides[index].classList.add('active');
-                    dots[index].classList.add('active');
+                    // Activate the selected slide and dot
+                    slides[index].classList.add('active');
+                    dots[index].classList.add('active');
 
-                    // If the active slide contains a video, play it
-                    const activeVideo = slides[index].querySelector('video');
-                    if (activeVideo) {
-                        activeVideo.play();
-                    }
+                    // If the active slide contains a video, play it
+                    const activeVideo = slides[index].querySelector('video');
+                    if (activeVideo) {
+                        activeVideo.play();
+                    }
 
-                    currentSlideIndex = index;
-                }
+                    currentSlideIndex = index;
+                }
 
-                // Function to go to the next slide
-                function nextSlide() {
-                    let newIndex = currentSlideIndex + 1;
-                    if (newIndex >= slides.length) {
-                        newIndex = 0; // Loop back to the first slide
-                    }
-                    showSlide(newIndex);
-                }
+                // Function to go to the next slide
+                function nextSlide() {
+                    let newIndex = currentSlideIndex + 1;
+                    if (newIndex >= slides.length) {
+                        newIndex = 0; // Loop back to the first slide
+                    }
+                    showSlide(newIndex);
+                }
 
-                // Function to go to the previous slide
-                function prevSlide() {
-                    let newIndex = currentSlideIndex - 1;
-                    if (newIndex < 0) {
-                        newIndex = slides.length - 1; // Loop to the last slide
-                    }
-                    showSlide(newIndex);
-                }
+                // Function to go to the previous slide
+                function prevSlide() {
+                    let newIndex = currentSlideIndex - 1;
+                    if (newIndex < 0) {
+                        newIndex = slides.length - 1; // Loop to the last slide
+                    }
+                    showSlide(newIndex);
+                }
 
-                // Event listeners for navigation buttons
-                prevBtn.addEventListener('click', prevSlide);
-                nextBtn.addEventListener('click', nextSlide);
+                // Event listeners for navigation buttons
+                prevBtn.addEventListener('click', prevSlide);
+                nextBtn.addEventListener('click', nextSlide);
 
-                // Initialize the first slide
-                showSlide(currentSlideIndex);
-            });
-        });
-    </script>
+                // Initialize the first slide
+                showSlide(currentSlideIndex);
+            });
+        });
+    </script>
 </body>
 </html>
-
