@@ -283,6 +283,13 @@
                         body: JSON.stringify({ name, email, message })
                     });
 
+                    // Check if the network request itself failed (e.g., CORS, DNS, unreachable server)
+                    if (!response.ok && response.type === 'opaque') { // 'opaque' response type often indicates CORS or network issue
+                        console.error("Network request to Edge Function failed. This could be a CORS issue, incorrect URL, or function not running.");
+                        displayStatus("Message saved, but failed to send email: Network error. Check console for CORS or function deployment issues.", "error");
+                        return;
+                    }
+
                     const result = await response.json();
 
                     if (!response.ok) {
@@ -297,11 +304,15 @@
 
                 } catch (e) {
                     console.error("Unexpected error during submission or email trigger:", e);
-                    displayStatus(`An unexpected error occurred: ${e.message}. Please try again.`, "error");
+                    // Differentiate between a network error (TypeError) and other errors
+                    if (e instanceof TypeError && e.message === 'Failed to fetch') {
+                        displayStatus("An unexpected network error occurred. Please check your internet connection or if the Edge Function URL is correct and accessible.", "error");
+                    } else {
+                        displayStatus(`An unexpected error occurred: ${e.message}. Please try again.`, "error");
+                    }
                 }
             });
         });
     </script>
 </body>
 </html>
-
