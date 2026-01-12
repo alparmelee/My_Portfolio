@@ -3,158 +3,354 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrew Parmelee - About Me</title>
+    <title>Andrew Parmelee - IT Major Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Libre+Bodoni:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="icon.png">
     <style>
+        /* Base styles */
         body {
             font-family: 'Inter', sans-serif;
-            background-image: url('Portfolio.png');
+            background-image: url('Portfolio.png'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
             color: #374151;
         }
-        .about-card {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 1.25rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            padding: 2.5rem;
+
+        /* Project Card specific styles (Now perfectly square and seamless) */
+        .project-card {
+            background-color: #FFFFFF;
+            border: 1px solid black; 
+            border-bottom: none;
+            border-top: none;
+            padding-bottom: 2rem;
+            padding-top: 2rem;
+            margin-bottom: 0; 
+            position: relative;
+            z-index: 10;
         }
-        .about-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        
+        /* Custom Shadow for Stacked Effect */
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: -20px; 
+            left: -20px; 
+            width: 100%;
+            height: 100%;
+            background-color: #FAFAFA; 
+            border: 1px solid black;
+            z-index: -1; 
+            /* REMOVED border-radius */
         }
+        
+        /* First Card: Needs its top border */
+        section .project-card:first-child {
+            border-top: 1px solid black;
+        }
+        
+        /* Last Card: Needs its bottom border */
+        section .project-card:last-child {
+            border-bottom: 1px solid black;
+        }
+
+        /* REMOVED border-radius from project-card:hover */
+        .project-card:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+
+        /* Technology List Styling */
+        .tech-list li {
+            list-style: none; 
+            margin-right: 1rem; 
+            padding: 0.25rem 0; 
+        }
+        .tech-list {
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+
+        /* Single Image Specific Styles */
+        .project-image-container {
+            width: 100%;
+            padding-bottom: 100%; 
+            position: relative;
+            overflow: hidden;
+            /* REMOVED border-radius */
+            box-shadow: none;
+        }
+        .project-image-container img,
+        .project-image-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            /* REMOVED border-radius */
+        }
+
+
+        /* Button specific styles */
         .btn-primary {
-            background: linear-gradient(to right, #6366f1, #8b5cf6);
+            background: #4f46e5;
             border: none;
             color: white;
             font-weight: 600;
             padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-        }
-        .btn-primary:hover {
-            background: linear-gradient(to right, #4f46e5, #7c3aed);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15), 0 3px 6px -2px rgba(0, 0, 0, 0.08);
-        }
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .animate-fade-in-down {
-            animation: fadeInDown 1s ease-out forwards;
-        }
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
-        }
-        .navbar-link {
-            color: #4a5568;
-            font-weight: 600;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
+            border-radius: 0.25rem;
+            box-shadow: none;
             transition: all 0.2s ease-in-out;
         }
-        .navbar-link:hover {
-            background-color: #e2e8f0;
-            color: #2d3748;
+        .btn-primary:hover {
+            background: #4338ca;
+            transform: translateY(0);
+            box-shadow: none;
         }
-        .navbar-link.active {
-            background-color: #6366f1;
+
+        .btn-secondary {
+            background: #6b7280;
+            border: none;
             color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            box-shadow: none;
+            transition: all 0.2s ease-in-out;
         }
-        .navbar-link.active:hover {
-            background-color: #4f46e5;
+        .btn-secondary:hover {
+            background: #4b5563;
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        /* Header animation and Navbar styling */
+        .animate-fade-in-down { animation: fadeInDown 1s ease-out forwards; }
+        .navbar {
+            position: relative; 
+            background-color: transparent; 
+            box-shadow: none;
+            z-index: 1000; 
+        }
+        .navbar-link {
+            color: #374151;
+            font-weight: 400;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease-in-out;
+        }
+        .navbar-link:hover, .navbar-link.active {
+            background-color: transparent; 
+            color: #111827;
+            border-bottom: 2px solid #374151; 
+        }
+
+        /* Custom style for the large "Work" title and alignment */
+        .page-title-container {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .page-title {
+            font-family: 'Libre Bodoni', serif !important;
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
         }
     </style>
 </head>
-<body class="antialiased min-h-screen flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
+<body class="antialiased">
+    <div class="min-h-screen flex flex-col items-center px-4 sm:px-6 lg:px-8">
 
-    <header class="text-center mb-12 w-full max-w-2xl animate-fade-in-down mt-20">
-        <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight">
-            Andrew Parmelee
-        </h1>
-        <p class="text-xl sm:text-2xl text-indigo-700 font-bold drop-shadow-sm">
-            IT Major at University of Central Florida
-        </p>
-    </header>
+        <div class="w-full max-w-7xl">
+            <div class="page-title-container">
+                <h1 class="page-title text-gray-900">Andrew Parmelee</h1>
+                <nav class="flex space-x-6">
+                    <a href="index.html" class="navbar-link active">Work</a>
+                    <a href="about.html" class="navbar-link">About</a>
+                    <a href="contact.html" class="navbar-link">Contact</a>
+                </nav>
+            </div>
+            
+            <header class="text-left mb-8 w-full animate-fade-in-down">
+                <h2 class="text-5xl font-extrabold text-gray-900 mb-2 leading-tight tracking-tight" style="font-family: 'Libre Bodoni', serif">
+                    Work
+                </h2>
 
-    <main class="w-full max-w-4xl">
-    <section class="about-card flex flex-col lg:flex-row items-center lg:items-start lg:space-x-8">
-        <div class="lg:w-1/3 w-full flex justify-center mb-8 lg:mb-0">
-            <img src="AP.png" alt="Andrew Parmelee Profile Picture" class="rounded-full w-48 h-48 object-cover shadow-lg border-4 border-white">
-        </div>
-        <div class="lg:w-2/3 w-full text-center lg:text-left">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">Hello, I’m Andrew!</h2>
-            <p class="text-lg text-gray-700 mb-4 leading-relaxed">
-                I’m an Information Technology major at the University of Central Florida and plan to graduate in May 2026.
-            </p>
-            <p class="text-lg text-gray-700 mb-4 leading-relaxed">
-                I've always been passionate about creating things – art, games, 3D modeling, graphic design, and programming. Most recently, my interests have shifted toward web development and finding ways to use technology to help people.
-            </p>
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                I plan to continue building tools and experiences that make life easier, more engaging, or more accessible for others.
-            </p>
-            <section aria-labelledby="contact-heading" class="flex flex-wrap justify-center lg:justify-start gap-4 mb-6">
-                <h3 id="contact-heading" class="sr-only">Contact</h3>
-                <a href="mailto:an798200@ucf.edu" class="btn-primary">
-                    Email: an798200@ucf.edu
-                </a>
-                <a href="https://www.linkedin.com/in/andrew-parmelee-2292b7376/" target="_blank" class="btn-primary">
-                    LinkedIn Profile
-                </a>
-            </section>
-            <section class="mb-6 text-left">
-                <h3 class="text-2xl font-semibold text-gray-800 mb-2">Highlighted Projects</h3>
-                <div class="flex flex-wrap gap-4">
-                    <a href="cramcraft.html" class="btn-primary" target="_blank">CramCraft</a>
-                    <a href="readingroom.html" class="btn-primary" target="_blank">The Virtual Reading Room</a>
+            </header>
+            
+            <section class="w-full">
+
+                <div class="project-card p-8 flex flex-col lg:flex-row-reverse items-start lg:space-x-reverse lg:space-x-8">
+                    <div class="lg:w-3/4 w-full mb-6 lg:mb-0">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-3">CramCraft</h3>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            A collaborative flashcard website built for my Human-Computer Interaction course using the <b>JAM stack</b>. I led the front-end development using raw HTML, CSS, and JavaScript. The application features user accounts, flashcard creation and sharing, a unique <b>double-sided print option</b> for physical use, and bulk-importing from Quizlet—a key competitive feature. We utilized <b>GitHub</b> for version control and <b>Supabase</b> for database management.
+                        </p>
+                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
+                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
+                            <li class="mt-1"><img src="Icons/HTML.png" alt="HTML Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">HTML, <img src="Icons/CSS.png" alt="CSS Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">CSS, <img src="Icons/javascript.png" alt="JavaScript Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">JavaScript</li>
+                            <li class="mt-1"><img src="Icons/GitHub.png" alt="GitHub Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">GitHub (for collaboration)</li>
+                            <li class="mt-1"><img src="Icons/supabase.png" alt="Supabase Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Supabase (for database)</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://alparmelee.github.io/FlashcardMaker/" target="_blank" class="btn-primary">
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/4 w-full">
+                        <div class="project-image-container">
+                            <img src="Cramcraft.png" alt="CramCraft Flashcard Website Screenshot (800x800)">
+                        </div>
+                    </div>
+                </div>
+
+                                <div class="project-card p-8 flex flex-col lg:flex-row-reverse items-start lg:space-x-reverse lg:space-x-8">
+                    <div class="lg:w-3/4 w-full mb-6 lg:mb-0">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-3">GroundHog Ratings.com (LAMP Stack)</h3>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            A classic server-side movie rating web application built using the <b>LAMP stack</b> (Linux/Apache/MySQL/PHP) for the same IT course. This project introduces a unique rating concept: movies are rated based on the user's desired <b>rewatchability interval</b> (e.g., "I'd want to see this again in 5 years"). This demonstrates foundational knowledge of traditional server-side architecture, SQL database management, and PHP development.
+                        </p>
+                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
+                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
+                            <li class="mt-1"><img src="Icons/Apache.png" alt="Apache Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Apache Web Server</li>
+                            <li class="mt-1"><img src="Icons/mysql.png" alt="MySQL Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">MySQL (Database)</li>
+                            <li class="mt-1"><img src="Icons/php.png" alt="PHP Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">PHP (Backend Logic)</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="http://groundhogratings.infinityfree.me/index.php" target="_blank" class="btn-primary">
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/4 w-full">
+                        <div class="project-image-container">
+                            <img src="Groundhog.png" alt="GroundHog Ratings LAMP Stack Movie App Screenshot (800x800)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card p-8 flex flex-col lg:flex-row items-start lg:space-x-8">
+                    <div class="lg:w-1/4 w-full mb-6 lg:mb-0">
+                        <div class="project-image-container">
+                            <img src="FlickScore.png" alt="FlickScore MERN Stack Movie Rating App Screenshot (800x800)">
+                        </div>
+                    </div>
+                    <div class="lg:w-3/4 w-full">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-3">FlickScore.com (MERN Stack)</h3>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            A full-stack movie rating application developed using the <b>MERN stack</b> (MongoDB, Express.js, React, Node.js) as part of my "Web-Based Information Technology" course. This project utilizes a modern single-page application architecture where users can navigate to a dashboard, assign 1 to 5-star ratings to movies, and write detailed text reviews. This demonstrates proficiency in developing scalable, API-driven web applications.
+                        </p>
+                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
+                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
+                            <li class="mt-1"><img src="Icons/mongodb.png" alt="MongoDB Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">MongoDB (Database)</li>
+                            <li class="mt-1"><img src="Icons/express-js.png" alt="Express.js Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Express.js & <img src="Icons/node.js.png" alt="Node.js Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Node.js (Backend)</li>
+                            <li class="mt-1"><img src="Icons/React.png" alt="React Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">React (Frontend)</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://movieratings-client.onrender.com/user-dashboard" target="_blank" class="btn-primary">
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card p-8 flex flex-col lg:flex-row items-start lg:space-x-8">
+                     <div class="lg:w-1/4 w-full mb-6 lg:mb-0">
+                        <div class="project-image-container">
+                            <img src="Virtual Reading Room.png" alt="Virtual Reading Room App Screenshot (800x800)">
+                        </div>
+                    </div>
+                    <div class="lg:w-3/4 w-full">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-3">Virtual Reading Room</h3>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            Building on a web scraping assignment from my 'Practical Programming in Python' course, I developed a full-stack web application. It lets users explore and read public domain books from Project Gutenberg, demonstrating responsible web scraping (using official catalog data), database integration, API development, and a dynamic frontend. Users can search, filter by language, browse, and view books directly in the browser.
+                        </p>
+                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
+                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
+                            <li class="mt-1"><img src="Icons/Python.png" alt="Python Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Python (<img src="Icons/Flask.png" alt="Flask Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Flask for Backend)</li>
+                            <li class="mt-1"><img src="Icons/pandas.png" alt="Pandas Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Pandas (for data processing)</li>
+                            <li class="mt-1"><img src="Icons/sqllite.png" alt="SQLite Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">SQLite (for Database)</li>
+                            <li class="mt-1"><img src="Icons/HTML.png" alt="HTML Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">HTML, <img src="Icons/CSS.png" alt="CSS Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">CSS, <img src="Icons/javascript.png" alt="JavaScript Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">JavaScript (Frontend)</li>
+                            <li class="mt-1"><img src="Icons/GitHub.png" alt="GitHub Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">GitHub (for Version Control)</li>
+                            <li class="mt-1"><img src="Icons/Render.png" alt="Render.com Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Render.com (for Deployment)</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://virtualreadingroom-frontend.onrender.com/" target="_blank" class="btn-primary">
+                                Live Demo
+                            </a>
+                            <a href="https://github.com/alparmelee/virtualreadingroom" target="_blank" class="btn-secondary">
+                                View Repository
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card p-8 flex flex-col lg:flex-row-reverse items-start lg:space-x-reverse lg:space-x-8">
+                    <div class="lg:w-3/4 w-full mb-6 lg:mb-0">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-3">On Your Feet</h3>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            A platformer video game still in development, created with a Digital Media friend. I handle all programming using <b>Unity</b> and <b>C#</b>. The game features complex player mechanics, including various soccer kicks (charge, rabona, bicycle), jumps, crouching, and level completion mechanics, along with enemy collision and death. This project highlights my ability to apply object-oriented programming principles in a fast-paced game environment.
+                        </p>
+                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
+                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
+                            <li class="mt-1"><img src="Icons/unity.png" alt="Unity Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Unity (Game Engine)</li>
+                            <li class="mt-1"><img src="Icons/Csharp.png" alt="C# Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">C# (Programming Language)</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://alex-lynn.itch.io/on-your-feet-demo" target="_blank" class="btn-primary">
+                                Download Game
+                            </a>
+                            <a href="https://github.com/alparmelee/On-Your-Feet" target="_blank" class="btn-secondary">
+                                View Repository
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/4 w-full">
+                        <div class="project-image-container">
+                            <img src="On Your Feet.png" alt="On Your Feet Platformer Game Screenshot (800x800)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card p-8 flex flex-col lg:flex-row items-start lg:space-x-8">
+                    <div class="lg:w-1/4 w-full mb-6 lg:mb-0">
+                        <div class="project-image-container">
+                            <img src="Alex.png" alt="Alex Lynn Portfolio Screenshot (800x800)">
+                        </div>
+                    </div>
+                    <div class="lg:w-3/4 w-full">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-3">Alex Lynn Portfolio</h3>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            As well as collaborating with a friend on the "On Your Feet" video game, I also collaborated with him on creating his personal portfolio. I built the entire site from scratch using simple HTML, JavaScript, and CSS, focusing on a clean, responsive presentation to showcase his work.
+                        </p>
+                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
+                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
+                            <li class="mt-1"><img src="Icons/HTML.png" alt="HTML Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">HTML, <img src="Icons/CSS.png" alt="CSS Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">CSS, <img src="Icons/javascript.png" alt="JavaScript Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">JavaScript</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://alparmelee.github.io/AlexPortfolio/index.html" target="_blank" class="btn-primary">
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </section>
-            <section class="mb-6 text-left">
-                <h3 class="text-2xl font-semibold text-gray-800 mb-2">Education</h3>
-                <ul class="list-disc list-inside text-gray-700">
-                    <li>Seminole State College (2022-2024)</li>
-                    <li>University of Central Florida (2022-Present)</li>
-                </ul>
-            </section>
-            <section class="mb-2 text-left">
-                <h3 class="text-2xl font-semibold text-gray-800 mb-2">Skills</h3>
-                <ul class="flex flex-wrap gap-2">
-                    <li class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">HTML</li>
-                    <li class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">CSS</li>
-                    <li class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">JavaScript</li>
-                    <li class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">Python</li>
-                    <li class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">C#</li>
-                    <li class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">GitHub</li>
-                </ul>
-            </section>
         </div>
-    </section>
-</main>
 
-    <footer class="mt-12 text-center text-gray-600 text-sm">
-        <p>&copy; 2025 Andrew Parmelee. All rights reserved.</p>
-        <p>IT Major, University of Central Florida</p>
-    </footer>
+        <footer class="mt-12 text-center text-gray-600 text-sm" style="color: #000000;">
+            <p>&copy; 2025 Andrew Parmelee. All rights reserved.</p>
+            <p>IT Major, University of Central Florida</p>
+        </footer>
+    </div>
 </body>
 </html>

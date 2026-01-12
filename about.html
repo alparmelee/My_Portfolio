@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Parmelee - About Me</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Libre+Bodoni:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="icon.png">
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('Portfolio.png'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #374151;
+        }
+
+        /* --- STYLES CONSISTENT WITH INDEX.HTML (FLAT, STACKED, BLACK BORDER) --- */
+        
+        /* Custom Font for Headings (using imported Libre Bodoni) */
+        .page-title, header h1, header h2 {
+            font-family: 'Libre Bodoni', serif !important; /* Added !important to override tailwind if needed */
+        }
+        
+        /* Page Header and Navigation Alignment (Copied from Index.html) */
+        .page-title-container {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        /* Project Card / About Card (Flat, Bordered, Stacked) */
+        .about-card {
+            background-color: #FFFFFF;
+            border: 1px solid black; 
+            padding: 2.5rem; 
+            margin-bottom: 0; 
+            position: relative;
+            z-index: 10;
+            border-radius: 0; /* Removing rounded corners */
+            box-shadow: none; /* Removing drop shadow */
+        }
+        
+        /* Custom Shadow for Stacked Effect (Copied from Index.html) */
+        .about-card::after {
+            content: '';
+            position: absolute;
+            top: -20px; 
+            left: -20px; 
+            width: 100%;
+            height: 100%;
+            background-color: #FAFAFA; 
+            border: 1px solid black;
+            z-index: -1; 
+            border-radius: 0;
+        }
+        /* No hover effect on the card itself (consistent with index.html) */
+        .about-card:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Button specific styles (Flat, Solid Color) */
+        .btn-primary {
+            background: #4f46e5;
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem; /* Reduced radius */
+            box-shadow: none; /* Removed shadow */
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-primary:hover {
+            background: #4338ca;
+            transform: translateY(0); /* Removed lift effect */
+            box-shadow: none;
+        }
+        .btn-secondary {
+            background: #6b7280;
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            box-shadow: none;
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-secondary:hover {
+            background: #4b5563;
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+
+        /* Navigation Bar Styles (Modified for flat, inline appearance) */
+        .navbar {
+            /* Changed from fixed sticky bar to inline, transparent bar */
+            position: relative; 
+            background-color: transparent; 
+            box-shadow: none;
+            z-index: 1000; 
+        }
+        .navbar-link {
+            color: #374151; /* Text color */
+            font-weight: 400; /* Lighter font weight */
+            padding: 0.25rem 0.5rem; /* Smaller padding */
+            border-radius: 0; /* Removed rounding */
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease-in-out;
+        }
+        .navbar-link:hover, .navbar-link.active {
+            background-color: transparent; /* No background color change */
+            color: #111827; /* Darker text */
+            border-bottom: 2px solid #374151; /* Underline effect */
+        }
+        /* Active link uses hover style (underline) for consistency */
+        .navbar-link.active {
+            background-color: transparent; 
+            color: #111827; 
+            border-bottom: 2px solid #374151; 
+        }
+        /* Ensure active link hover is still active link style */
+        .navbar-link.active:hover {
+            background-color: transparent; 
+        }
+
+        /* Header animation (retained) */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down { animation: fadeInDown 1s ease-out forwards; }
+    </style>
+</head>
+<body class="antialiased">
+    
+    <div class="min-h-screen flex flex-col items-center px-4 sm:px-6 lg:px-8">
+        <div class="w-full max-w-7xl">
+            <div class="page-title-container">
+                <h1 class="page-title text-gray-900">Andrew Parmelee</h1>
+                <nav class="flex space-x-6">
+                    <a href="index.html" class="navbar-link">Work</a>
+                    <a href="about.html" class="navbar-link active">About</a>
+                    <a href="contact.html" class="navbar-link">Contact</a>
+                </nav>
+            </div>
+            
+            <header class="text-left mb-8 w-full animate-fade-in-down"> 
+                <h2 class="text-5xl font-extrabold text-gray-900 mb-2 leading-tight tracking-tight">
+                    About Me
+                </h2>
+                <p class="text-xl text-indigo-700 font-bold drop-shadow-sm">
+                    Information Technology Major
+                </p>
+            </header>
+
+            <main class="w-full">
+                <div class="pl-5 pt-5"> 
+                    <div class="about-card flex flex-col lg:flex-row items-center lg:items-start lg:space-x-8">
+                        <div class="lg:w-1/3 w-full flex justify-center mb-8 lg:mb-0">
+                            <img src="AP.png" alt="Andrew Parmelee Profile Picture" class="w-48 h-48 object-cover shadow-lg border-4 border-white">
+                        </div>
+                        <div class="lg:w-2/3 w-full text-center lg:text-left">
+                            <h2 class="text-4xl font-bold text-gray-900 mb-4">Hello, I’m Andrew!</h2>
+                            <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                                I’m an Information Technology major at the University of Central Florida and plan to graduate in May 2026.
+                            </p>
+                            <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                                I've always been passionate about creating things – art, games, 3D modeling, graphic design, and programming. Most recently, my interests have shifted toward web development and finding ways to use technology to help people.
+                            </p>
+                            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                                I plan to continue building tools and experiences that make life easier, more engaging, or more accessible for others.
+                            </p>
+                            <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                                <a href="https://www.linkedin.com/in/andrew-parmelee-2292b7376/" target="_blank" class="btn-primary">
+                                    Connect on LinkedIn
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="mt-12 text-center text-gray-600 text-sm" style="color: #000000;">
+                <p>&copy; 2025 Andrew Parmelee. All rights reserved.</p>
+                <p>IT Major, University of Central Florida</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

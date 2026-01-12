@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Parmelee - Contact</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Libre+Bodoni:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="icon.png">
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('Portfolio.png'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #374151;
+        }
+
+        /* --- STYLES CONSISTENT WITH INDEX.HTML (FLAT, BLACK BORDER) --- */
+        
+        /* Custom Font for Headings */
+        .page-title, header h1, header h2 {
+            font-family: 'Libre Bodoni', serif !important; 
+        }
+        
+        /* Page Header and Navigation Alignment (Redefining for consistency) */
+        .page-title-container {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        /* Button specific styles (Flat, Solid Color) */
+        .btn-primary {
+            background: #4f46e5;
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem; 
+            box-shadow: none; 
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-primary:hover {
+            background: #4338ca;
+            transform: translateY(0); 
+            box-shadow: none;
+        }
+
+        /* Form Input Styles (Squared, Black Border, White Background) */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid black; /* Black border */
+            border-radius: 0; /* Squared corners */
+            font-size: 1rem;
+            background-color: #FFFFFF; /* Explicit white background */
+            color: #2d3748;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            /* Added shadow for better visibility against background image */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #4f46e5; 
+            box-shadow: 0 0 0 1px #4f46e5; 
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+            font-size: 1rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Status Message Styles (Squared/Flat) */
+        .status-message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 0; 
+            font-weight: 600;
+            text-align: left;
+            border: 1px solid;
+            background-color: #FFFFFF; /* Ensure it stands out */
+        }
+        .status-success {
+            background-color: #E6F7E9; 
+            color: #155724;
+            border-color: #155724;
+        }
+        .status-error {
+            background-color: #FEE7E7; 
+            color: #721c24;
+            border-color: #721c24;
+        }
+        .submit-button-container {
+            margin-top: 2rem;
+            text-align: left; 
+        }
+
+
+        /* Navigation Bar Styles (FLAT, TRANSPARENT, UNDERLINE, NOT FIXED) */
+        .navbar {
+            position: relative; 
+            background-color: transparent; 
+            box-shadow: none;
+            z-index: 1000; 
+        }
+        .navbar-link {
+            color: #374151; 
+            font-weight: 400; 
+            padding: 0.25rem 0.5rem; 
+            border-radius: 0; 
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease-in-out;
+        }
+        .navbar-link:hover, .navbar-link.active {
+            background-color: transparent; 
+            color: #111827;
+            border-bottom: 2px solid #374151; 
+        }
+        .navbar-link.active {
+            background-color: transparent; 
+            color: #111827; 
+            border-bottom: 2px solid #374151; 
+        }
+        .navbar-link.active:hover {
+            background-color: transparent; 
+        }
+
+        /* Header animation (retained) */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down { animation: fadeInDown 1s ease-out forwards; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="min-h-screen flex flex-col items-center px-4 sm:px-6 lg:px-8">
+        <div class="w-full max-w-7xl">
+        
+        <div class="page-title-container">
+            <h1 class="page-title text-gray-900">Andrew Parmelee</h1>
+            <nav class="flex space-x-6">
+                <a href="index.html" class="navbar-link">Work</a>
+                <a href="about.html" class="navbar-link">About</a>
+                <a href="contact.html" class="navbar-link active">Contact</a>
+            </nav>
+        </div>
+
+        <header class="w-full">
+            <div class="text-left mb-8 w-full max-w-7xl animate-fade-in-down"> 
+                <h2 class="text-5xl font-extrabold text-gray-900 mb-2 leading-tight tracking-tight">
+                    Get in touch
+                </h2>
+                <p class="text-xl text-gray-700 font-bold drop-shadow-sm">
+                    Want to work together? Fill out the form below and I'll get back to you as soon as I can.
+                </p>
+            </div>
+        </header>
+
+        <main class="w-full max-w-7xl">
+            <form id="contactForm" action="https://formspree.io/f/xqaleolw" method="POST" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required class="w-full">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required class="w-full">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Type your message here..." rows="6" required class="w-full"></textarea>
+                </div>
+                <div class="submit-button-container">
+                    <button type="submit" class="btn-primary">
+                        Send message <span aria-hidden="true">&rarr;</span>
+                    </button>
+                </div>
+                <div id="formStatus" class="status-message hidden"></div>
+            </form>
+        </main>
+
+        <footer class="mt-12 text-center text-gray-600 text-sm" style="color: #000000;">
+            <p>&copy; 2025 Andrew Parmelee. All rights reserved.</p>
+            <p>IT Major, University of Central Florida</p>
+        </footer>
+    </div>
+</div>
+
+    <script type="module">
+        // Using AJAX to handle Formspree submission without a page redirect
+        document.addEventListener('DOMContentLoaded', () => {
+            const formStatusDiv = document.getElementById('formStatus');
+            const contactForm = document.getElementById('contactForm');
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+
+            function displayStatus(message, type) {
+                formStatusDiv.textContent = message;
+                formStatusDiv.classList.remove('hidden', 'status-success', 'status-error', 'status-info');
+                formStatusDiv.classList.add(`status-${type}`);
+            }
+
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                displayStatus("Sending your message...", "info");
+                submitButton.disabled = true;
+
+                const form = e.target;
+                const data = new FormData(form);
+                
+                try {
+                    const response = await fetch(form.action, {
+                        method: form.method,
+                        body: data,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        displayStatus("Your message has been sent successfully! I will respond soon.", "success");
+                        form.reset();
+                    } else {
+                        const result = await response.json();
+                        if (result.errors) {
+                            displayStatus(result.errors.map(error => error.message).join(", "), "error");
+                        } else {
+                            displayStatus("Failed to send your message. Please try again or email me directly.", "error");
+                        }
+                    }
+                } catch (error) {
+                    displayStatus("There was a network error. Check your connection and try again.", "error");
+                } finally {
+                    submitButton.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
