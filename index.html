@@ -6,7 +6,7 @@
     <title>Andrew Parmelee - IT Major Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Libre+Bodoni:wght@400;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="icon" type="image/png" href="AP.png">
     <style>
         /* Base styles */
         body {
@@ -22,38 +22,17 @@
         /* Project Card specific styles (Now perfectly square and seamless) */
         .project-card {
             background-color: #FFFFFF;
-            border: 1px solid black; 
-            border-bottom: none;
-            border-top: none;
-            padding-bottom: 2rem;
-            padding-top: 2rem;
+            border-left: 1px solid black; 
+            border-right: 1px solid black;
+            border-bottom: 1px solid black;
             margin-bottom: 0; 
             position: relative;
             z-index: 10;
         }
         
-        /* Custom Shadow for Stacked Effect */
-        .project-card::after {
-            content: '';
-            position: absolute;
-            top: -20px; 
-            left: -20px; 
-            width: 100%;
-            height: 100%;
-            background-color: #FAFAFA; 
-            border: 1px solid black;
-            z-index: -1; 
-            /* REMOVED border-radius */
-        }
-        
         /* First Card: Needs its top border */
         section .project-card:first-child {
             border-top: 1px solid black;
-        }
-        
-        /* Last Card: Needs its bottom border */
-        section .project-card:last-child {
-            border-bottom: 1px solid black;
         }
 
         /* REMOVED border-radius from project-card:hover */
@@ -78,21 +57,16 @@
         /* Single Image Specific Styles */
         .project-image-container {
             width: 100%;
-            padding-bottom: 100%; 
+            height: 100%;
             position: relative;
             overflow: hidden;
-            /* REMOVED border-radius */
             box-shadow: none;
         }
         .project-image-container img,
         .project-image-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover; 
-            /* REMOVED border-radius */
         }
 
 
@@ -189,36 +163,16 @@
             
             <section class="w-full">
 
-                <div class="project-card p-8 flex flex-col lg:flex-row-reverse items-start lg:space-x-reverse lg:space-x-8">
-                    <div class="lg:w-3/4 w-full mb-6 lg:mb-0">
-                        <h3 class="text-3xl font-bold text-gray-900 mb-3">CramCraft</h3>
-                        <p class="text-gray-700 mb-4 leading-relaxed">
-                            A collaborative flashcard website built for my Human-Computer Interaction course using the <b>JAM stack</b>. I led the front-end development using raw HTML, CSS, and JavaScript. The application features user accounts, flashcard creation and sharing, a unique <b>double-sided print option</b> for physical use, and bulk-importing from Quizlet—a key competitive feature. We utilized <b>GitHub</b> for version control and <b>Supabase</b> for database management.
-                        </p>
-                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
-                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
-                            <li class="mt-1"><img src="Icons/HTML.png" alt="HTML Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">HTML, <img src="Icons/CSS.png" alt="CSS Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">CSS, <img src="Icons/javascript.png" alt="JavaScript Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">JavaScript</li>
-                            <li class="mt-1"><img src="Icons/GitHub.png" alt="GitHub Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">GitHub (for collaboration)</li>
-                            <li class="mt-1"><img src="Icons/supabase.png" alt="Supabase Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Supabase (for database)</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="https://alparmelee.github.io/CramCraft/index.html" target="_blank" class="btn-primary">
-                                Live Demo
-                            </a>
+                <div class="project-card flex flex-col lg:flex-row items-stretch overflow-hidden">
+                    <div class="lg:w-[300px] w-full border-r border-black flex-shrink-0">
+                        <div class="project-image-container bg-[#FFFBEB]">
+                            <img src="Groundhog.png" alt="GroundHog Ratings LAMP Stack Movie App Screenshot (800x800)">
                         </div>
                     </div>
-                    <div class="lg:w-1/4 w-full">
-                        <div class="project-image-container">
-                            <img src="Cramcraft.png" alt="CramCraft Flashcard Website Screenshot (800x800)">
-                        </div>
-                    </div>
-                </div>
-
-                                <div class="project-card p-8 flex flex-col lg:flex-row-reverse items-start lg:space-x-reverse lg:space-x-8">
-                    <div class="lg:w-3/4 w-full mb-6 lg:mb-0">
-                        <h3 class="text-3xl font-bold text-gray-900 mb-3">GroundHog Ratings.com (LAMP Stack)</h3>
+                    <div class="flex-grow p-8 lg:p-10">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-3">GroundHog Ratings.com</h3>
                         <p class="text-gray-700 mb-4 leading-relaxed">
-                            A classic server-side movie rating web application built using the <b>LAMP stack</b> (Linux/Apache/MySQL/PHP) for the same IT course. This project introduces a unique rating concept: movies are rated based on the user's desired <b>rewatchability interval</b> (e.g., "I'd want to see this again in 5 years"). This demonstrates foundational knowledge of traditional server-side architecture, SQL database management, and PHP development.
+                            A classic LAMP stack movie rating application introducing a unique "rewatchability interval" concept. Built with Linux, Apache, MySQL, and PHP.
                         </p>
                         <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
                         <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
@@ -232,23 +186,70 @@
                             </a>
                         </div>
                     </div>
-                    <div class="lg:w-1/4 w-full">
-                        <div class="project-image-container">
-                            <img src="Groundhog.png" alt="GroundHog Ratings LAMP Stack Movie App Screenshot (800x800)">
+                </div>
+
+                <div class="project-card flex flex-col lg:flex-row items-stretch overflow-hidden">
+                    <div class="lg:w-[300px] w-full border-r border-black flex-shrink-0">
+                        <div class="project-image-container bg-[#FF5A5F]">
+                            <img src="Cramcraft.png" alt="CramCraft Flashcard Website Screenshot (800x800)">
+                        </div>
+                    </div>
+                    <div class="flex-grow p-8 lg:p-10">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-3">CramCraft</h3>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            A collaborative JAM stack flashcard site with user accounts, sharing, double-sided printing, and Quizlet imports. Made using raw HTML, CSS, JavaScript, and Supabase.
+                        </p>
+                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
+                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
+                            <li class="mt-1"><img src="Icons/HTML.png" alt="HTML Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">HTML, <img src="Icons/CSS.png" alt="CSS Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">CSS, <img src="Icons/javascript.png" alt="JavaScript Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">JavaScript</li>
+                            <li class="mt-1"><img src="Icons/GitHub.png" alt="GitHub Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">GitHub (for collaboration)</li>
+                            <li class="mt-1"><img src="Icons/supabase.png" alt="Supabase Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Supabase (for database)</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://alparmelee.github.io/CramCraft/index.html" target="_blank" class="btn-primary">
+                                Live Demo
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="project-card p-8 flex flex-col lg:flex-row items-start lg:space-x-8">
-                    <div class="lg:w-1/4 w-full mb-6 lg:mb-0">
-                        <div class="project-image-container">
+                <div class="project-card flex flex-col lg:flex-row items-stretch overflow-hidden">
+                    <div class="lg:w-[300px] w-full border-r border-black flex-shrink-0">
+                        <div class="project-image-container bg-[#1E293B]">
+                            <img src="On Your Feet.png" alt="On Your Feet Platformer Game Screenshot (800x800)">
+                        </div>
+                    </div>
+                    <div class="flex-grow p-8 lg:p-10">
+                        <h3 class="text-3xl font-bold text-gray-900 mb-3">On Your Feet</h3>
+                        <p class="text-gray-700 mb-4 leading-relaxed">
+                            A Unity platformer featuring complex player mechanics like soccer kicks and enemy collisions. Developed in collaboration with a Digital Media artist using C#.
+                        </p>
+                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
+                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
+                            <li class="mt-1"><img src="Icons/unity.png" alt="Unity Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Unity (Game Engine)</li>
+                            <li class="mt-1"><img src="Icons/Csharp.png" alt="C# Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">C# (Programming Language)</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://alex-lynn.itch.io/on-your-feet-demo" target="_blank" class="btn-primary">
+                                Download Game
+                            </a>
+                            <a href="https://github.com/alparmelee/On-Your-Feet" target="_blank" class="btn-secondary">
+                                View Repository
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card flex flex-col lg:flex-row items-stretch overflow-hidden">
+                    <div class="lg:w-[300px] w-full border-r border-black flex-shrink-0">
+                        <div class="project-image-container bg-[#0B0D17]">
                             <img src="FlickScore.png" alt="FlickScore MERN Stack Movie Rating App Screenshot (800x800)">
                         </div>
                     </div>
-                    <div class="lg:w-3/4 w-full">
+                    <div class="flex-grow p-8 lg:p-10">
                         <h3 class="text-3xl font-bold text-gray-900 mb-3">FlickScore.com (MERN Stack)</h3>
                         <p class="text-gray-700 mb-4 leading-relaxed">
-                            A full-stack movie rating application developed using the <b>MERN stack</b> (MongoDB, Express.js, React, Node.js) as part of my "Web-Based Information Technology" course. This project utilizes a modern single-page application architecture where users can navigate to a dashboard, assign 1 to 5-star ratings to movies, and write detailed text reviews. This demonstrates proficiency in developing scalable, API-driven web applications.
+                            A full-stack movie rating application with a personalized dashboard and detailed reviews. Built using MongoDB, Express.js, React, and Node.js.
                         </p>
                         <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
                         <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
@@ -264,16 +265,16 @@
                     </div>
                 </div>
 
-                <div class="project-card p-8 flex flex-col lg:flex-row items-start lg:space-x-8">
-                     <div class="lg:w-1/4 w-full mb-6 lg:mb-0">
-                        <div class="project-image-container">
+                <div class="project-card flex flex-col lg:flex-row items-stretch overflow-hidden">
+                    <div class="lg:w-[300px] w-full border-r border-black flex-shrink-0">
+                        <div class="project-image-container bg-[#F1F5F9]">
                             <img src="Virtual Reading Room.png" alt="Virtual Reading Room App Screenshot (800x800)">
                         </div>
                     </div>
-                    <div class="lg:w-3/4 w-full">
+                    <div class="flex-grow p-8 lg:p-10">
                         <h3 class="text-3xl font-bold text-gray-900 mb-3">Virtual Reading Room</h3>
                         <p class="text-gray-700 mb-4 leading-relaxed">
-                            Building on a web scraping assignment from my 'Practical Programming in Python' course, I developed a full-stack web application. It lets users explore and read public domain books from Project Gutenberg, demonstrating responsible web scraping (using official catalog data), database integration, API development, and a dynamic frontend. Users can search, filter by language, browse, and view books directly in the browser.
+                            A full-stack Python/Flask app for browsing Project Gutenberg books. Features web scraping, database integration, and a dynamic frontend.
                         </p>
                         <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
                         <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
@@ -295,52 +296,45 @@
                     </div>
                 </div>
 
-                <div class="project-card p-8 flex flex-col lg:flex-row-reverse items-start lg:space-x-reverse lg:space-x-8">
-                    <div class="lg:w-3/4 w-full mb-6 lg:mb-0">
-                        <h3 class="text-3xl font-bold text-gray-900 mb-3">On Your Feet</h3>
-                        <p class="text-gray-700 mb-4 leading-relaxed">
-                            A platformer video game still in development, created with a Digital Media friend. I handle all programming using <b>Unity</b> and <b>C#</b>. The game features complex player mechanics, including various soccer kicks (charge, rabona, bicycle), jumps, crouching, and level completion mechanics, along with enemy collision and death. This project highlights my ability to apply object-oriented programming principles in a fast-paced game environment.
-                        </p>
-                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
-                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
-                            <li class="mt-1"><img src="Icons/unity.png" alt="Unity Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Unity (Game Engine)</li>
-                            <li class="mt-1"><img src="Icons/Csharp.png" alt="C# Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">C# (Programming Language)</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="https://alex-lynn.itch.io/on-your-feet-demo" target="_blank" class="btn-primary">
-                                Download Game
-                            </a>
-                            <a href="https://github.com/alparmelee/On-Your-Feet" target="_blank" class="btn-secondary">
-                                View Repository
-                            </a>
+                <div class="flex flex-col lg:flex-row items-stretch">
+                    <div class="project-card flex flex-col lg:flex-row items-stretch overflow-hidden lg:w-1/2 lg:border-r-0">
+                        <div class="lg:w-[300px] w-full border-r border-black flex-shrink-0">
+                            <div class="project-image-container bg-[#F8FAFC]">
+                                <img src="Alex.png" alt="Alex Lynn Portfolio Screenshot (800x800)">
+                            </div>
+                        </div>
+                        <div class="flex-grow p-8 lg:p-10">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Alex Lynn Portfolio</h3>
+                            <p class="text-gray-700 mb-4 leading-relaxed text-sm">
+                                A clean, responsive personal portfolio built from scratch using simple HTML, JavaScript, and CSS to showcase creative work.
+                            </p>
+                            <p class="text-gray-800 font-semibold mb-2 text-sm">Technologies Used:</p>
+                            <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0 text-sm">
+                                <li class="mt-1"><img src="Icons/HTML.png" alt="HTML Icon" class="w-4 h-4 inline-block mr-1" style="vertical-align: middle;">HTML, <img src="Icons/CSS.png" alt="CSS Icon" class="w-4 h-4 inline-block mr-1" style="vertical-align: middle;">CSS, <img src="Icons/javascript.png" alt="JavaScript Icon" class="w-4 h-4 inline-block mr-1" style="vertical-align: middle;">JS</li>
+                            </ul>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="https://alparmelee.github.io/AlexPortfolio/index.html" target="_blank" class="btn-primary py-2 px-4 text-sm">
+                                    Live Demo
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="lg:w-1/4 w-full">
-                        <div class="project-image-container">
-                            <img src="On Your Feet.png" alt="On Your Feet Platformer Game Screenshot (800x800)">
-                        </div>
-                    </div>
-                </div>
 
-                <div class="project-card p-8 flex flex-col lg:flex-row items-start lg:space-x-8">
-                    <div class="lg:w-1/4 w-full mb-6 lg:mb-0">
-                        <div class="project-image-container">
-                            <img src="Alex.png" alt="Alex Lynn Portfolio Screenshot (800x800)">
+                    <div class="project-card flex flex-col lg:flex-row items-stretch overflow-hidden lg:w-1/2">
+                        <div class="lg:w-[300px] w-full border-r border-black flex-shrink-0">
+                            <div class="project-image-container bg-[#F1F5F9]">
+                                <img src="AP.png" alt="Andrew Parmelee Portfolio Screenshot (800x800)">
+                            </div>
                         </div>
-                    </div>
-                    <div class="lg:w-3/4 w-full">
-                        <h3 class="text-3xl font-bold text-gray-900 mb-3">Alex Lynn Portfolio</h3>
-                        <p class="text-gray-700 mb-4 leading-relaxed">
-                            As well as collaborating with a friend on the "On Your Feet" video game, I also collaborated with him on creating his personal portfolio. I built the entire site from scratch using simple HTML, JavaScript, and CSS, focusing on a clean, responsive presentation to showcase his work.
-                        </p>
-                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
-                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
-                            <li class="mt-1"><img src="Icons/HTML.png" alt="HTML Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">HTML, <img src="Icons/CSS.png" alt="CSS Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">CSS, <img src="Icons/javascript.png" alt="JavaScript Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">JavaScript</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="https://alparmelee.github.io/AlexPortfolio/index.html" target="_blank" class="btn-primary">
-                                Live Demo
-                            </a>
+                        <div class="flex-grow p-8 lg:p-10">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">My Portfolio</h3>
+                            <p class="text-gray-700 mb-4 leading-relaxed text-sm">
+                                My personal professional portfolio designed to highlight my journey as an IT major, showcasing technical skills and creative projects.
+                            </p>
+                            <p class="text-gray-800 font-semibold mb-2 text-sm">Technologies Used:</p>
+                            <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0 text-sm">
+                                <li class="mt-1"><img src="Icons/HTML.png" alt="HTML Icon" class="w-4 h-4 inline-block mr-1" style="vertical-align: middle;">HTML, <img src="Icons/CSS.png" alt="CSS Icon" class="w-4 h-4 inline-block mr-1" style="vertical-align: middle;">CSS, <img src="Icons/javascript.png" alt="JavaScript Icon" class="w-4 h-4 inline-block mr-1" style="vertical-align: middle;">JS</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -353,5 +347,4 @@
         </footer>
     </div>
 </body>
-
 </html>
