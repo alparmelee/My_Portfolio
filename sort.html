@@ -10,409 +10,181 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-image: url('Portfolio.png');
+            background-color: #f9fafb;
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('Tech.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            color: #374151;
         }
-
-        /* Reusing .project-card styles for main sections */
         .section-card {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 1.25rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .section-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-
-        /* Button specific styles (retained from original portfolio CSS) */
-        .btn-primary {
-            background: linear-gradient(to right, #6366f1, #8b5cf6);
-            border: none;
-            color: white;
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
+            background-color: white;
             border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-        }
-        .btn-primary:hover {
-            background: linear-gradient(to right, #4f46e5, #7c3aed);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15), 0 3px 6px -2px rgba(0, 0, 0, 0.08);
-        }
-
-        .btn-secondary {
-            background: linear-gradient(to right, #4b5563, #6b7280);
-            border: none;
-            color: white;
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-        }
-        .btn-secondary:hover {
-            background: linear-gradient(to right, #374151, #4b5563);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.15), 0 3px 6px -2px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Header animation (retained) */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .animate-fade-in-down {
-            animation: fadeInDown 1s ease-out forwards;
-        }
-
-        /* Specific styles for the sorting machine, adapted */
-        h1, h2 {
-            color: #1a202c; /* Darker text for headings */
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        textarea {
-            width: 100%;
-            height: 100px;
-            margin-bottom: 10px;
-            padding: 8px;
-            border: 1px solid #cbd5e0;
-            border-radius: 0.5rem;
-            resize: vertical;
-            font-family: monospace;
-            font-size: 1rem;
-            background-color: #f7fafc;
-            color: #2d3748;
-        }
-        textarea:focus {
-            outline: none;
-            border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-        }
-        input[type="file"] {
-            margin-bottom: 10px;
-            padding: 8px 0; /* Adjust padding for file input */
-            color: #4a5568;
-        }
-        .status {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 0.5rem;
-            background-color: #e9f5ff;
-            border: 1px solid #cce5ff;
-            color: #31708f;
-            min-height: 20px;
-            font-weight: 600; /* Made slightly bolder */
-        }
-        .output-data {
-            background-color: #e2e8f0; /* Lighter grey for output */
-            padding: 15px; /* Increased padding */
-            border-radius: 0.5rem;
-            min-height: 80px; /* Increased min-height */
-            font-family: monospace;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            color: #2d3748;
-            border: 1px solid #cbd5e0;
-        }
-        .explanation {
-            border: 1px dashed #6366f1; /* Changed border color to match primary theme */
-            padding: 20px; /* Increased padding */
-            background-color: #e0f2ff;
-            border-radius: 1.25rem; /* Rounded corners for consistency */
-            margin-top: 25px;
-            margin-bottom: 25px; /* Added margin-bottom */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Subtle shadow */
-            color: #2c5282; /* Darker blue text */
-        }
-        .explanation h3 {
-            color: #4f46e5; /* Darker purple-blue for explanation heading */
-            margin-bottom: 10px; /* Added margin */
-            font-size: 1.5rem; /* Slightly larger font */
-            font-weight: 700; /* Bolder */
-        }
-        .explanation p {
-            margin-bottom: 8px;
-            line-height: 1.6;
-        }
-        .explanation strong {
-            color: #3182ce; /* Distinct color for strong text */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px border-gray-100;
         }
     </style>
 </head>
-<body class="antialiased flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8 min-h-screen">
-    <header class="text-center mb-12 w-full max-w-2xl animate-fade-in-down">
-        <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight">
-            Smart Sorting Machine
-        </h1>
-        <p class="text-lg sm:text-xl text-indigo-700 font-bold drop-shadow-sm">
-            Optimized Hybrid Sorting Algorithm
-        </p>
+<body class="antialiased text-gray-900">
+
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold tracking-tight">Andrew Parmelee</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-900 hover:text-gray-900 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-900 hover:text-gray-900 px-3 py-2 text-sm font-medium">About</a>
+                    <a href="contact.html" class="text-gray-900 hover:text-gray-900 px-3 py-2 text-sm font-medium">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-white py-12 px-4 text-center">
+        <div class="max-w-[1600px] mx-auto">
+            <h1 class="text-3xl md:text-4xl font-extrabold mb-4">Smart Sorting Machine</h1>
+            <p class="text-base opacity-90">Optimized Hybrid Sorting Algorithm</p>
+        </div>
     </header>
 
-    <main class="w-full max-w-2xl">
-
-        <div class="input-section section-card">
-            <h2 class="text-2xl font-bold mb-4 text-center">Your List to Sort</h2>
-            <textarea id="inputList" placeholder="Enter numbers separated by commas, e.g., 5,2,8,1,9,4,7,3,6" class="mb-4"></textarea>
-            <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
-                <input type="file" id="inputFile" accept=".txt" class="flex-grow">
-                <button onclick="loadFromFile()" class="btn-secondary">Load from .txt File</button>
-                <button onclick="generateRandomList()" class="btn-secondary">Generate Random List</button>
+    <main class="max-w-3xl mx-auto py-12 px-4">
+        <div class="section-card">
+            <h2 class="text-xl font-bold mb-4">Your List to Sort</h2>
+            <textarea id="inputList" placeholder="Enter numbers separated by commas..." class="w-full h-32 p-4 border border-gray-300 rounded-md mb-4 focus:ring-2 focus:ring-gray-500 focus:border-gray-500 outline-none"></textarea>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input type="file" id="inputFile" accept=".txt" class="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200">
+                <div class="flex gap-2">
+                    <button onclick="loadFromFile()" class="flex-grow bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded font-semibold text-sm transition">Load File</button>
+                    <button onclick="generateRandomList()" class="flex-grow bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded font-semibold text-sm transition">Random</button>
+                </div>
             </div>
         </div>
 
-        <div class="control-section section-card">
-            <h2 class="text-2xl font-bold mb-4 text-center">Sort & Get Results</h2>
-            <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
-                <button onclick="sortList()" class="btn-primary flex-grow">Sort List Now</button>
-                <button onclick="saveToFile()" class="btn-primary flex-grow">Save Sorted List to .txt</button>
+        <div class="section-card">
+            <h2 class="text-xl font-bold mb-4">Controls</h2>
+            <div class="flex gap-4">
+                <button onclick="sortList()" class="flex-grow bg-black text-white px-6 py-3 rounded-md font-bold hover:bg-gray-800 transition">Sort Now</button>
+                <button onclick="saveToFile()" class="flex-grow border border-gray-300 px-6 py-3 rounded-md font-bold hover:bg-gray-50 transition">Save to .txt</button>
             </div>
-            <div class="status" id="sortStatus"></div>
+            <div id="sortStatus" class="mt-4 p-3 rounded-md text-sm font-semibold hidden"></div>
         </div>
 
-        <div class="output-section section-card">
-            <h2 class="text-2xl font-bold mb-4 text-center">Sorted Result</h2>
-            <div class="output-data" id="outputList"></div>
+        <div class="section-card">
+            <h2 class="text-xl font-bold mb-4">Sorted Result</h2>
+            <div id="outputList" class="p-4 bg-gray-50 rounded-md font-mono text-sm break-all min-h-[100px]"></div>
         </div>
     </main>
-    
-    <footer class="mt-12 text-center text-gray-600 text-sm">
-        <p>&copy; 2025 Smart Sorting Machine. All rights reserved.</p>
+
+    <footer class="bg-white border-t border-gray-200 py-12 text-center text-gray-600">
+        <div class="max-w-[1600px] mx-auto px-4">
+            <p>&copy; 2025 Smart Sorting Machine. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
-        // --- Settings for our Smart Switching ---
-        // If one part of the list is less than 10% the size of the other
+        // ... (sorting logic remains the same)
         const BALANCE_RATIO_THRESHOLD = 0.1;
-        // How many times QuickSort makes unbalanced piles before we switch to MergeSort
         const CONSECUTIVE_UNBALANCED_THRESHOLD = 3;
+        let consecutiveUnbalancedCount = 0;
 
-        let consecutiveUnbalancedCount = 0; // Keeps track of how many bad QuickSort piles in a row
-
-        // --- The Sorting Methods ---
-
-        // --- MergeSort: The reliable sorter ---
         function mergeSort(arr) {
-            // If the list has 0 or 1 item, it's already sorted!
-            if (arr.length <= 1) {
-                return arr;
-            }
-
-            // Split the list exactly in half
+            if (arr.length <= 1) return arr;
             const mid = Math.floor(arr.length / 2);
-            const left = arr.slice(0, mid);
-            const right = arr.slice(mid);
-
-            // Sort each half, then merge them back together in order
-            return merge(mergeSort(left), mergeSort(right));
+            return merge(mergeSort(arr.slice(0, mid)), mergeSort(arr.slice(mid)));
         }
 
-        // Helper for MergeSort: Puts two sorted lists back together
         function merge(left, right) {
-            let result = [];
-            let leftIndex = 0;
-            let rightIndex = 0;
-
-            while (leftIndex < left.length && rightIndex < right.length) {
-                if (left[leftIndex] < right[rightIndex]) {
-                    result.push(left[leftIndex]);
-                    leftIndex++;
-                } else {
-                    result.push(right[rightIndex]);
-                    rightIndex++;
-                }
+            let result = [], l = 0, r = 0;
+            while (l < left.length && r < right.length) {
+                if (left[l] < right[r]) result.push(left[l++]);
+                else result.push(right[r++]);
             }
-
-            // Add any remaining items from either list
-            return result.concat(left.slice(leftIndex), right.slice(rightIndex));
+            return result.concat(left.slice(l), right.slice(r));
         }
 
-        // --- QuickSort: The usually fast sorter with a backup plan ---
         function quickSort(arr, low = 0, high = arr.length - 1) {
-            // If the section of the list has 0 or 1 item, it's sorted!
-            if (low >= high) {
+            if (low >= high) return;
+            const size = high - low + 1;
+            if (consecutiveUnbalancedCount >= CONSECUTIVE_UNBALANCED_THRESHOLD && size > 10) {
+                const sorted = mergeSort(arr.slice(low, high + 1));
+                for (let i = 0; i < sorted.length; i++) arr[low + i] = sorted[i];
+                consecutiveUnbalancedCount = 0;
                 return;
             }
-
-            // Check if QuickSort has been making too many bad piles in a row
-            // and if the current list section is big enough to matter (over 10 items)
-            const currentPartitionSize = high - low + 1;
-            if (consecutiveUnbalancedCount >= CONSECUTIVE_UNBALANCED_THRESHOLD && currentPartitionSize > 10) {
-                displayStatus(`QuickSort is struggling here! Switching to MergeSort for this part.`, 'orange');
-                // Use MergeSort for this part of the list
-                const subArray = arr.slice(low, high + 1);
-                const sortedSubArray = mergeSort(subArray);
-                // Put the MergeSorted part back into the original list
-                for (let i = 0; i < sortedSubArray.length; i++) {
-                    arr[low + i] = sortedSubArray[i];
-                }
-                consecutiveUnbalancedCount = 0; // Reset the counter since MergeSort took over
-                return;
-            }
-
-            // Find the right spot for the 'pivot' paper, dividing the list
             const pivotIndex = partition(arr, low, high);
-
-            // --- Check if the piles QuickSort made are unbalanced ---
-            const leftPartitionSize = pivotIndex - low;
-            const rightPartitionSize = high - pivotIndex;
-
-            const minSize = Math.min(leftPartitionSize, rightPartitionSize);
-            const maxSize = Math.max(leftPartitionSize, rightPartitionSize);
-
-            // If one pile is much smaller than the other (e.g., less than 10% of the bigger one)
-            if (maxSize > 0 && (minSize / maxSize) < BALANCE_RATIO_THRESHOLD) {
-                consecutiveUnbalancedCount++; // Increase the counter for bad piles
-                displayStatus(`QuickSort made an unbalanced pile! Counting up... (${consecutiveUnbalancedCount}/${CONSECUTIVE_UNBALANCED_THRESHOLD})`, 'red');
-            } else {
-                consecutiveUnbalancedCount = 0; // Reset if QuickSort makes a good, balanced pile
-            }
-
-            // Keep sorting the two new piles using QuickSort
+            const lSize = pivotIndex - low, rSize = high - pivotIndex;
+            const minS = Math.min(lSize, rSize), maxS = Math.max(lSize, rSize);
+            if (maxS > 0 && (minS / maxS) < BALANCE_RATIO_THRESHOLD) consecutiveUnbalancedCount++;
+            else consecutiveUnbalancedCount = 0;
             quickSort(arr, low, pivotIndex - 1);
             quickSort(arr, pivotIndex + 1, high);
         }
 
-        // Helper for QuickSort: Rearranges items around the pivot
         function partition(arr, low, high) {
-            // We'll pick the last item as our 'pivot' paper for simplicity.
-            // (In real life, a smarter way to pick the pivot helps prevent bad piles!)
             const pivot = arr[high];
             let i = low - 1;
-
             for (let j = low; j < high; j++) {
-                if (arr[j] < pivot) {
-                    i++;
-                    // Swap items if they're smaller than the pivot
-                    [arr[i], arr[j]] = [arr[j], arr[i]];
-                }
+                if (arr[j] < pivot) [arr[++i], arr[j]] = [arr[j], arr[i]];
             }
-            // Put the pivot in its correct spot
             [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
             return i + 1;
         }
 
-        // --- Connecting to the Web Page (UI Logic and File Input/Output) ---
-
-        const inputListTextarea = document.getElementById('inputList');
-        const outputListDiv = document.getElementById('outputList');
-        const sortStatusDiv = document.getElementById('sortStatus');
-        const inputFileElement = document.getElementById('inputFile');
-
-        // Shows messages to the user (like "Sorting..." or "Switching...")
-        function displayStatus(message, color = 'black') {
-            sortStatusDiv.textContent = message;
-            sortStatusDiv.style.color = color;
+        function displayStatus(msg, type = 'info') {
+            const status = document.getElementById('sortStatus');
+            status.textContent = msg;
+            status.classList.remove('hidden', 'bg-gray-100', 'text-gray-700', 'bg-green-50', 'text-green-700', 'bg-red-50', 'text-red-700');
+            if (type === 'green') status.classList.add('bg-green-50', 'text-green-700');
+            else if (type === 'red') status.classList.add('bg-red-50', 'text-red-700');
+            else status.classList.add('bg-gray-100', 'text-gray-700');
+            status.classList.remove('hidden');
         }
 
-        // Gets the numbers from the input box
-        function getInputArray() {
-            const inputText = inputListTextarea.value;
-            // Splits by comma, removes empty spaces, and converts to numbers
-            const numbers = inputText.split(',').map(s => parseFloat(s.trim())).filter(n => !isNaN(n));
-            return numbers;
-        }
-
-        // Puts the sorted list into the output box
-        function setOutputArray(arr) {
-            outputListDiv.textContent = arr.join(', ');
-        }
-
-        // --- Main 'Sort List' button action ---
         function sortList() {
-            let arr = getInputArray();
-            if (arr.length === 0) {
-                displayStatus("Oops! Please enter some numbers or load a file first.", 'red');
-                return;
-            }
-
-            displayStatus("Sorting your list...", 'blue');
-            consecutiveUnbalancedCount = 0; // Reset the counter for a new sort
-
-            // Make a copy so we don't mess up the original numbers in the input box
-            const arrayToSort = [...arr];
-
-            // Start the smart sorting process!
-            const startTime = performance.now(); // Record start time
-            quickSort(arrayToSort); // This function will modify arrayToSort in-place
-            const endTime = performance.now(); // Record end time
-
-            setOutputArray(arrayToSort); // Show the sorted list
-            displayStatus(`Sorting complete! It took ${(endTime - startTime).toFixed(2)} milliseconds.`, 'green');
+            const input = document.getElementById('inputList').value;
+            const arr = input.split(',').map(s => parseFloat(s.trim())).filter(n => !isNaN(n));
+            if (!arr.length) return displayStatus("Please enter numbers.", 'red');
+            displayStatus("Sorting...");
+            const start = performance.now();
+            quickSort(arr);
+            const end = performance.now();
+            document.getElementById('outputList').textContent = arr.join(', ');
+            displayStatus(`Sorted in ${(end - start).toFixed(2)}ms`, 'green');
         }
 
-        // --- 'Generate Random List' button action ---
         function generateRandomList() {
-            const count = 20; // How many numbers to generate
-            const maxVal = 100; // The highest possible number
-            const randomArray = Array.from({ length: count }, () => Math.floor(Math.random() * maxVal));
-            inputListTextarea.value = randomArray.join(', ');
-            displayStatus("A new random list is ready!", 'green');
+            const arr = Array.from({ length: 20 }, () => Math.floor(Math.random() * 100));
+            document.getElementById('inputList').value = arr.join(', ');
         }
 
-        // --- 'Load from .txt File' action ---
         function loadFromFile() {
-            const file = inputFileElement.files[0];
-            if (!file) {
-                displayStatus("Please choose a text file.", 'red');
-                return;
-            }
-
+            const file = document.getElementById('inputFile').files[0];
+            if (!file) return displayStatus("Select a file.", 'red');
             const reader = new FileReader();
             reader.onload = (e) => {
-                const content = e.target.result;
-                inputListTextarea.value = content.trim(); // Put file content into the input box
-                displayStatus(`File '${file.name}' loaded successfully!`, 'green');
+                document.getElementById('inputList').value = e.target.result.trim();
+                displayStatus("File loaded!", 'green');
             };
-            reader.onerror = () => {
-                displayStatus("Sorry, there was an error reading the file.", 'red');
-            };
-            reader.readAsText(file); // Read the file as text
+            reader.readAsText(file);
         }
 
-        // --- 'Save to .txt File' action ---
         function saveToFile() {
-            const outputContent = outputListDiv.textContent;
-            if (!outputContent) {
-                displayStatus("Nothing sorted yet! Sort a list first.", 'red');
-                return;
-            }
-
-            // Create a temporary file in your browser's memory
-            const blob = new Blob([outputContent], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob); // Get a link to this temporary file
-
-            // Create a hidden link on the page and "click" it to start download
+            const content = document.getElementById('outputList').textContent;
+            if (!content) return displayStatus("Nothing to save.", 'red');
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url;
-            a.download = 'sorted_list.txt'; // Name for the downloaded file
-            document.body.appendChild(a);
-            a.click(); // Trigger the download
-            document.body.removeChild(a); // Clean up the hidden link
-            URL.revokeObjectURL(url); // Release the temporary file link
-            displayStatus("Sorted list saved to 'sorted_list.txt'!", 'green');
+            a.href = url; a.download = 'sorted.txt';
+            a.click(); URL.revokeObjectURL(url);
         }
 
-        // Set an initial example list when the page loads
-        inputListTextarea.value = "10,2,8,1,9,4,7,3,6,5,11,13,12,15,14,16,17,18,19,20,21,22,23,24,25";
+        document.getElementById('inputList').value = "10,2,8,1,9,4,7,3,6,5,11,13,12,15,14";
     </script>
 </body>
 </html>

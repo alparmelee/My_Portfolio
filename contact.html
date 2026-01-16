@@ -5,257 +5,210 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrew Parmelee - Contact</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Libre+Bodoni:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="AP.png">
     <style>
-        /* Base styles */
         body {
             font-family: 'Inter', sans-serif;
-            background-image: url('Portfolio.png'); 
+            background-color: #f9fafb;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark-mode {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Tech.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            color: #374151;
         }
-
-        /* --- STYLES CONSISTENT WITH INDEX.HTML (FLAT, BLACK BORDER) --- */
-        
-        /* Custom Font for Headings */
-        .page-title, header h1, header h2 {
-            font-family: 'Libre Bodoni', serif !important; 
+        .dark-mode .bg-white {
+            background-color: #1e293b;
         }
-        
-        /* Page Header and Navigation Alignment (Redefining for consistency) */
-        .page-title-container {
-            padding-top: 2rem;
-            padding-bottom: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .dark-mode .text-gray-900, .dark-mode .tracking-tight, .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode label {
+            color: #ffffff;
         }
-        .page-title {
-            font-size: 3rem;
-            font-weight: 800;
-            line-height: 1;
+        .dark-mode .hover\:text-gray-900:hover {
+            color: #ffffff !important;
         }
-
-        /* Button specific styles (Flat, Solid Color) */
-        .btn-primary {
-            background: #4f46e5;
-            border: none;
-            color: white;
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.25rem; 
-            box-shadow: none; 
-            transition: all 0.2s ease-in-out;
+        .dark-mode .text-gray-600 {
+            color: #cbd5e1;
         }
-        .btn-primary:hover {
-            background: #4338ca;
-            transform: translateY(0); 
-            box-shadow: none;
+        .dark-mode .text-gray-700 {
+            color: #e2e8f0;
         }
-
-        /* Form Input Styles (Squared, Black Border, White Background) */
-        input[type="text"],
-        input[type="email"],
-        textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid black; /* Black border */
-            border-radius: 0; /* Squared corners */
-            font-size: 1rem;
-            background-color: #FFFFFF; /* Explicit white background */
-            color: #2d3748;
-            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            /* Added shadow for better visibility against background image */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+        .dark-mode .border-gray-200, .dark-mode .border-gray-100 {
+            border-color: #334155;
         }
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #4f46e5; 
-            box-shadow: 0 0 0 1px #4f46e5; 
+        .dark-mode .bg-gray-100 {
+            background-color: #334155;
         }
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #374151;
-            font-size: 1rem;
+        .dark-mode nav {
+            background-color: #0f172a;
+            border-color: #334155;
         }
-        .form-group {
-            margin-bottom: 1.5rem;
+        .dark-mode footer {
+            background-color: #0f172a;
+            border-color: #334155;
         }
-        
-        /* Status Message Styles (Squared/Flat) */
+        .dark-mode .hover\:bg-gray-50:hover {
+            background-color: #334155;
+        }
+        .dark-mode .bg-black {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .dark-mode .hover\:bg-gray-800:hover {
+            background-color: #e2e8f0;
+        }
+        .dark-mode #sun-icon {
+            color: #ffffff;
+        }
+        .dark-mode #dark-mode-toggle:hover {
+            background-color: #334155;
+        }
+        .dark-mode input, .dark-mode textarea {
+            background-color: #1e293b;
+            border-color: #334155;
+            color: #ffffff;
+        }
         .status-message {
             margin-top: 1.5rem;
             padding: 1rem;
-            border-radius: 0; 
+            border-radius: 0.5rem;
             font-weight: 600;
-            text-align: left;
-            border: 1px solid;
-            background-color: #FFFFFF; /* Ensure it stands out */
         }
-        .status-success {
-            background-color: #E6F7E9; 
-            color: #155724;
-            border-color: #155724;
-        }
-        .status-error {
-            background-color: #FEE7E7; 
-            color: #721c24;
-            border-color: #721c24;
-        }
-        .submit-button-container {
-            margin-top: 2rem;
-            text-align: left; 
-        }
-
-
-        /* Navigation Bar Styles (FLAT, TRANSPARENT, UNDERLINE, NOT FIXED) */
-        .navbar {
-            position: relative; 
-            background-color: transparent; 
-            box-shadow: none;
-            z-index: 1000; 
-        }
-        .navbar-link {
-            color: #374151; 
-            font-weight: 400; 
-            padding: 0.25rem 0.5rem; 
-            border-radius: 0; 
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s ease-in-out;
-        }
-        .navbar-link:hover, .navbar-link.active {
-            background-color: transparent; 
-            color: #111827;
-            border-bottom: 2px solid #374151; 
-        }
-        .navbar-link.active {
-            background-color: transparent; 
-            color: #111827; 
-            border-bottom: 2px solid #374151; 
-        }
-        .navbar-link.active:hover {
-            background-color: transparent; 
-        }
-
-        /* Header animation (retained) */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-down { animation: fadeInDown 1s ease-out forwards; }
+        .status-success { background-color: #def7ec; color: #03543f; }
+        .status-error { background-color: #fde8e8; color: #9b1c1c; }
+        .status-info { background-color: #e1effe; color: #1e429f; }
     </style>
 </head>
-<body class="antialiased">
-    <div class="min-h-screen flex flex-col items-center px-4 sm:px-6 lg:px-8">
-        <div class="w-full max-w-7xl">
-        
-        <div class="page-title-container">
-            <h1 class="page-title text-gray-900">Andrew Parmelee</h1>
-            <nav class="flex space-x-6">
-                <a href="index.html" class="navbar-link">Work</a>
-                <a href="about.html" class="navbar-link">About</a>
-                <a href="contact.html" class="navbar-link active">Contact</a>
-            </nav>
-        </div>
+<body class="antialiased text-gray-900">
 
-        <header class="w-full">
-            <div class="text-left mb-8 w-full max-w-7xl animate-fade-in-down"> 
-                <h2 class="text-5xl font-extrabold text-gray-900 mb-2 leading-tight tracking-tight">
-                    Get in touch
-                </h2>
-                <p class="text-xl text-gray-700 font-bold drop-shadow-sm">
-                    Want to work together? Fill out the form below and I'll get back to you as soon as I can.
-                </p>
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold tracking-tight">Andrew Parmelee</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-900 hover:text-gray-900 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-900 hover:text-gray-900 px-3 py-2 text-sm font-medium">About</a>
+                    <a href="contact.html" class="text-gray-900 hover:text-gray-900 px-3 py-2 text-sm font-medium">Contact</a>
+                    <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-gray-100 transition-colors" aria-label="Toggle Dark Mode">
+                        <svg id="sun-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                        <svg id="moon-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    </button>
+                </div>
             </div>
-        </header>
+        </div>
+    </nav>
 
-        <main class="w-full max-w-7xl">
+    <!-- Hero Section -->
+    <header class="hero-section text-white py-16 px-4 text-center">
+        <div class="max-w-[1600px] mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Get in touch</h1>
+            <p class="text-lg md:text-xl opacity-90">
+                Want to work together? Send me a message!
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 p-8">
             <form id="contactForm" action="https://formspree.io/f/xqaleolw" method="POST" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required class="w-full">
+                    <div>
+                        <label for="name" class="block text-sm font-semibold mb-2">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-gray-500 focus:border-gray-500 outline-none transition">
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required class="w-full">
+                    <div>
+                        <label for="email" class="block text-sm font-semibold mb-2">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-gray-500 focus:border-gray-500 outline-none transition">
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Type your message here..." rows="6" required class="w-full"></textarea>
+                <div>
+                    <label for="message" class="block text-sm font-semibold mb-2">Message</label>
+                    <textarea id="message" name="message" placeholder="Type your message here..." rows="6" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-gray-500 focus:border-gray-500 outline-none transition"></textarea>
                 </div>
-                <div class="submit-button-container">
-                    <button type="submit" class="btn-primary">
-                        Send message <span aria-hidden="true">&rarr;</span>
+                <div>
+                    <button type="submit" id="submitBtn" class="w-full bg-black text-white px-8 py-4 rounded-md font-bold hover:bg-gray-800 transition duration-300">
+                        Send message &rarr;
                     </button>
                 </div>
                 <div id="formStatus" class="status-message hidden"></div>
             </form>
-        </main>
+        </div>
+    </main>
 
-        <footer class="mt-12 text-center text-gray-600 text-sm" style="color: #000000;">
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-12 text-center text-gray-600">
+        <div class="max-w-[1600px] mx-auto px-4">
             <p>&copy; 2025 Andrew Parmelee. All rights reserved.</p>
-            <p>IT Major, University of Central Florida</p>
-        </footer>
-    </div>
-</div>
+            <p class="mt-2 text-sm">IT Major, University of Central Florida</p>
+        </div>
+    </footer>
 
-    <script type="module">
-        // Using AJAX to handle Formspree submission without a page redirect
-        document.addEventListener('DOMContentLoaded', () => {
-            const formStatusDiv = document.getElementById('formStatus');
-            const contactForm = document.getElementById('contactForm');
-            const submitButton = contactForm.querySelector('button[type="submit"]');
+    <script>
+        const toggle = document.getElementById('dark-mode-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        const body = document.body;
 
-            function displayStatus(message, type) {
-                formStatusDiv.textContent = message;
-                formStatusDiv.classList.remove('hidden', 'status-success', 'status-error', 'status-info');
-                formStatusDiv.classList.add(`status-${type}`);
+        // Check for saved preference
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+        }
+
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            
+            if (isDark) {
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                localStorage.setItem('theme', 'light');
             }
+        });
 
-            contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                displayStatus("Sending your message...", "info");
-                submitButton.disabled = true;
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const status = document.getElementById('formStatus');
+            const btn = document.getElementById('submitBtn');
+            
+            btn.disabled = true;
+            status.textContent = "Sending...";
+            status.className = "status-message status-info";
+            status.classList.remove('hidden');
 
-                const form = e.target;
-                const data = new FormData(form);
-                
-                try {
-                    const response = await fetch(form.action, {
-                        method: form.method,
-                        body: data,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
-
-                    if (response.ok) {
-                        displayStatus("Your message has been sent successfully! I will respond soon.", "success");
-                        form.reset();
-                    } else {
-                        const result = await response.json();
-                        if (result.errors) {
-                            displayStatus(result.errors.map(error => error.message).join(", "), "error");
-                        } else {
-                            displayStatus("Failed to send your message. Please try again or email me directly.", "error");
-                        }
-                    }
-                } catch (error) {
-                    displayStatus("There was a network error. Check your connection and try again.", "error");
-                } finally {
-                    submitButton.disabled = false;
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    status.textContent = "Success! Your message has been sent.";
+                    status.className = "status-message status-success";
+                    form.reset();
+                } else {
+                    status.textContent = "Oops! There was a problem sending your message.";
+                    status.className = "status-message status-error";
                 }
-            });
+            } catch (error) {
+                status.textContent = "Network error. Please try again later.";
+                status.className = "status-message status-error";
+            } finally {
+                btn.disabled = false;
+            }
         });
     </script>
 </body>

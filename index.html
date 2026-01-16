@@ -3,348 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrew Parmelee - IT Major Portfolio</title>
+    <title>Andrew Parmelee - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Libre+Bodoni:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="AP.png">
     <style>
-        /* Base styles */
         body {
             font-family: 'Inter', sans-serif;
-            background-image: url('Portfolio.png'); 
+            background-color: #f9fafb;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark-mode {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Tech.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            color: #374151;
         }
-
-        /* Project Card specific styles (Now perfectly square and seamless) */
-        .project-card {
-            background-color: #FFFFFF;
-            border-left: 1px solid black; 
-            border-right: 1px solid black;
-            border-bottom: 1px solid black;
-            margin-bottom: 0; 
-            position: relative;
-            z-index: 10;
+        .dark-mode .bg-white {
+            background-color: #1e293b;
         }
-        
-        /* First Card: Needs its top border */
-        section .project-card:first-child {
-            border-top: 1px solid black;
+        .dark-mode .text-gray-900, .dark-mode .tracking-tight, .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode label {
+            color: #ffffff;
         }
-
-        /* REMOVED border-radius from project-card:hover */
-        .project-card:hover {
-            transform: none;
-            box-shadow: none;
+        .dark-mode .hover\:text-gray-900:hover {
+            color: #ffffff !important;
         }
-
-
-        /* Technology List Styling */
-        .tech-list li {
-            list-style: none; 
-            margin-right: 1rem; 
-            padding: 0.25rem 0; 
+        .dark-mode .text-gray-600 {
+            color: #cbd5e1;
         }
-        .tech-list {
-            margin-left: 0;
-            padding-left: 0;
+        .dark-mode .text-gray-700 {
+            color: #e2e8f0;
         }
-
-
-        /* Single Image Specific Styles */
-        .project-image-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            box-shadow: none;
+        .dark-mode .border-gray-200, .dark-mode .border-gray-100 {
+            border-color: #334155;
         }
-        .project-image-container img,
-        .project-image-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; 
+        .dark-mode .bg-gray-100 {
+            background-color: #334155;
         }
-
-
-        /* Button specific styles */
-        .btn-primary {
-            background: #4f46e5;
-            border: none;
-            color: white;
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.25rem;
-            box-shadow: none;
-            transition: all 0.2s ease-in-out;
+        .dark-mode nav {
+            background-color: #0f172a;
+            border-color: #334155;
         }
-        .btn-primary:hover {
-            background: #4338ca;
-            transform: translateY(0);
-            box-shadow: none;
+        .dark-mode footer {
+            background-color: #0f172a;
+            border-color: #334155;
         }
-
-        .btn-secondary {
-            background: #6b7280;
-            border: none;
-            color: white;
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.25rem;
-            box-shadow: none;
-            transition: all 0.2s ease-in-out;
+        .dark-mode .hover\:bg-gray-50:hover {
+            background-color: #334155;
         }
-        .btn-secondary:hover {
-            background: #4b5563;
-            transform: translateY(0);
-            box-shadow: none;
+        .dark-mode .bg-black {
+            background-color: #f8fafc;
+            color: #0f172a;
         }
-
-        /* Header animation and Navbar styling */
-        .animate-fade-in-down { animation: fadeInDown 1s ease-out forwards; }
-        .navbar {
-            position: relative; 
-            background-color: transparent; 
-            box-shadow: none;
-            z-index: 1000; 
+        .dark-mode .hover\:bg-gray-800:hover {
+            background-color: #e2e8f0;
         }
-        .navbar-link {
-            color: #374151;
-            font-weight: 400;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s ease-in-out;
+        /* Keep Hero Button White in Dark Mode */
+        .dark-mode .hero-section .bg-white {
+            background-color: #ffffff;
+            color: #000000;
         }
-        .navbar-link:hover, .navbar-link.active {
-            background-color: transparent; 
-            color: #111827;
-            border-bottom: 2px solid #374151; 
+        .dark-mode #sun-icon {
+            color: #ffffff;
         }
-
-        /* Custom style for the large "Work" title and alignment */
-        .page-title-container {
-            padding-top: 2rem;
-            padding-bottom: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .page-title {
-            font-family: 'Libre Bodoni', serif !important;
-            font-size: 3rem;
-            font-weight: 800;
-            line-height: 1;
+        .dark-mode #dark-mode-toggle:hover {
+            background-color: #334155;
         }
     </style>
 </head>
-<body class="antialiased">
-    <div class="min-h-screen flex flex-col items-center px-4 sm:px-6 lg:px-8">
+<body class="antialiased text-gray-900">
 
-        <div class="w-full max-w-7xl">
-            <div class="page-title-container">
-                <h1 class="page-title text-gray-900">Andrew Parmelee</h1>
-                <nav class="flex space-x-6">
-                    <a href="index.html" class="navbar-link active">Work</a>
-                    <a href="about.html" class="navbar-link">About</a>
-                    <a href="contact.html" class="navbar-link">Contact</a>
-                </nav>
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold tracking-tight">Andrew Parmelee</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-900 hover:text-gray-900 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="about.html" class="text-gray-900 hover:text-gray-900 px-3 py-2 text-sm font-medium">About</a>
+                    <a href="contact.html" class="text-gray-900 hover:text-gray-900 px-3 py-2 text-sm font-medium">Contact</a>
+                    <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-gray-100 transition-colors" aria-label="Toggle Dark Mode">
+                        <svg id="sun-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                        <svg id="moon-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    </button>
+                </div>
             </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-white py-16 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Welcome to my portfolio</h1>
+            <p class="text-lg md:text-xl mb-8 opacity-90">
+                Showcasing my journey as an IT major, technical skills, and creative projects.
+            </p>
+            <a href="#projects" class="bg-white text-black px-8 py-3 rounded-md font-bold text-lg hover:bg-gray-100 transition duration-300">
+                View My Work
+            </a>
+        </div>
+    </header>
+
+    <!-- Projects Section -->
+    <main id="projects" class="max-w-[1200px] mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-center mb-8">My Projects</h2>
+        
+        <div class="grid grid-cols-1 gap-8">
             
-            <header class="text-left mb-8 w-full animate-fade-in-down">
-                <h2 class="text-5xl font-extrabold text-gray-900 mb-2 leading-tight tracking-tight" style="font-family: 'Libre Bodoni', serif">
-                    Work
-                </h2>
-
-            </header>
-            
-            <section class="w-full">
-
-                <div class="project-card flex flex-col lg:flex-row items-stretch overflow-hidden">
-                    <div class="lg:w-[300px] w-full border-r border-black flex-shrink-0">
-                        <div class="project-image-container bg-[#FFFBEB]">
-                            <img src="Groundhog.png" alt="GroundHog Ratings LAMP Stack Movie App Screenshot (800x800)">
-                        </div>
-                    </div>
-                    <div class="flex-grow p-8 lg:p-10">
-                        <h3 class="text-3xl font-bold text-gray-900 mb-3">GroundHog Ratings.com</h3>
-                        <p class="text-gray-700 mb-4 leading-relaxed">
-                            A classic LAMP stack movie rating application introducing a unique "rewatchability interval" concept. Built with Linux, Apache, MySQL, and PHP.
-                        </p>
-                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
-                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
-                            <li class="mt-1"><img src="Icons/Apache.png" alt="Apache Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Apache Web Server</li>
-                            <li class="mt-1"><img src="Icons/mysql.png" alt="MySQL Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">MySQL (Database)</li>
-                            <li class="mt-1"><img src="Icons/php.png" alt="PHP Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">PHP (Backend Logic)</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="http://groundhogratings.infinityfree.me/index.php" target="_blank" class="btn-primary">
-                                Live Demo
-                            </a>
-                        </div>
-                    </div>
+            <!-- GroundHog Ratings -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row border border-gray-100 transform transition hover:scale-[1.01]">
+                <div class="relative md:w-1/5 flex-shrink-0 h-48 md:h-auto overflow-hidden bg-[#FFFBEB]">
+                    <img src="Groundhog.png" alt="GroundHog Ratings" class="w-full h-full object-cover">
                 </div>
-
-                <div class="project-card flex flex-col lg:flex-row items-stretch overflow-hidden">
-                    <div class="lg:w-[300px] w-full border-r border-black flex-shrink-0">
-                        <div class="project-image-container bg-[#FF5A5F]">
-                            <img src="Cramcraft.png" alt="CramCraft Flashcard Website Screenshot (800x800)">
-                        </div>
-                    </div>
-                    <div class="flex-grow p-8 lg:p-10">
-                        <h3 class="text-3xl font-bold text-gray-900 mb-3">CramCraft</h3>
-                        <p class="text-gray-700 mb-4 leading-relaxed">
-                            A collaborative JAM stack flashcard site with user accounts, sharing, double-sided printing, and Quizlet imports. Made using raw HTML, CSS, JavaScript, and Supabase.
-                        </p>
-                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
-                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
-                            <li class="mt-1"><img src="Icons/HTML.png" alt="HTML Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">HTML, <img src="Icons/CSS.png" alt="CSS Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">CSS, <img src="Icons/javascript.png" alt="JavaScript Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">JavaScript</li>
-                            <li class="mt-1"><img src="Icons/GitHub.png" alt="GitHub Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">GitHub (for collaboration)</li>
-                            <li class="mt-1"><img src="Icons/supabase.png" alt="Supabase Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Supabase (for database)</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="https://alparmelee.github.io/CramCraft/index.html" target="_blank" class="btn-primary">
-                                Live Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card flex flex-col lg:flex-row items-stretch overflow-hidden">
-                    <div class="lg:w-[300px] w-full border-r border-black flex-shrink-0">
-                        <div class="project-image-container bg-[#1E293B]">
-                            <img src="On Your Feet.png" alt="On Your Feet Platformer Game Screenshot (800x800)">
-                        </div>
-                    </div>
-                    <div class="flex-grow p-8 lg:p-10">
-                        <h3 class="text-3xl font-bold text-gray-900 mb-3">On Your Feet</h3>
-                        <p class="text-gray-700 mb-4 leading-relaxed">
-                            A Unity platformer featuring complex player mechanics like soccer kicks and enemy collisions. Developed in collaboration with a Digital Media artist using C#.
-                        </p>
-                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
-                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
-                            <li class="mt-1"><img src="Icons/unity.png" alt="Unity Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Unity (Game Engine)</li>
-                            <li class="mt-1"><img src="Icons/Csharp.png" alt="C# Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">C# (Programming Language)</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="https://alex-lynn.itch.io/on-your-feet-demo" target="_blank" class="btn-primary">
-                                Download Game
-                            </a>
-                            <a href="https://github.com/alparmelee/On-Your-Feet" target="_blank" class="btn-secondary">
-                                View Repository
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card flex flex-col lg:flex-row items-stretch overflow-hidden">
-                    <div class="lg:w-[300px] w-full border-r border-black flex-shrink-0">
-                        <div class="project-image-container bg-[#0B0D17]">
-                            <img src="FlickScore.png" alt="FlickScore MERN Stack Movie Rating App Screenshot (800x800)">
-                        </div>
-                    </div>
-                    <div class="flex-grow p-8 lg:p-10">
-                        <h3 class="text-3xl font-bold text-gray-900 mb-3">FlickScore.com (MERN Stack)</h3>
-                        <p class="text-gray-700 mb-4 leading-relaxed">
-                            A full-stack movie rating application with a personalized dashboard and detailed reviews. Built using MongoDB, Express.js, React, and Node.js.
-                        </p>
-                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
-                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
-                            <li class="mt-1"><img src="Icons/mongodb.png" alt="MongoDB Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">MongoDB (Database)</li>
-                            <li class="mt-1"><img src="Icons/express-js.png" alt="Express.js Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Express.js & <img src="Icons/node.js.png" alt="Node.js Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Node.js (Backend)</li>
-                            <li class="mt-1"><img src="Icons/React.png" alt="React Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">React (Frontend)</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="https://movieratings-client.onrender.com/user-dashboard" target="_blank" class="btn-primary">
-                                Live Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card flex flex-col lg:flex-row items-stretch overflow-hidden">
-                    <div class="lg:w-[300px] w-full border-r border-black flex-shrink-0">
-                        <div class="project-image-container bg-[#F1F5F9]">
-                            <img src="Virtual Reading Room.png" alt="Virtual Reading Room App Screenshot (800x800)">
-                        </div>
-                    </div>
-                    <div class="flex-grow p-8 lg:p-10">
-                        <h3 class="text-3xl font-bold text-gray-900 mb-3">Virtual Reading Room</h3>
-                        <p class="text-gray-700 mb-4 leading-relaxed">
-                            A full-stack Python/Flask app for browsing Project Gutenberg books. Features web scraping, database integration, and a dynamic frontend.
-                        </p>
-                        <p class="text-gray-800 font-semibold mb-2">Technologies Used:</p>
-                        <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0">
-                            <li class="mt-1"><img src="Icons/Python.png" alt="Python Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Python (<img src="Icons/Flask.png" alt="Flask Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Flask for Backend)</li>
-                            <li class="mt-1"><img src="Icons/pandas.png" alt="Pandas Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Pandas (for data processing)</li>
-                            <li class="mt-1"><img src="Icons/sqllite.png" alt="SQLite Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">SQLite (for Database)</li>
-                            <li class="mt-1"><img src="Icons/HTML.png" alt="HTML Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">HTML, <img src="Icons/CSS.png" alt="CSS Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">CSS, <img src="Icons/javascript.png" alt="JavaScript Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">JavaScript (Frontend)</li>
-                            <li class="mt-1"><img src="Icons/GitHub.png" alt="GitHub Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">GitHub (for Version Control)</li>
-                            <li class="mt-1"><img src="Icons/Render.png" alt="Render.com Icon" class="w-5 h-5 inline-block mr-1" style="vertical-align: middle;">Render.com (for Deployment)</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-3">
-                            <a href="https://virtualreadingroom-frontend.onrender.com/" target="_blank" class="btn-primary">
-                                Live Demo
-                            </a>
-                            <a href="https://github.com/alparmelee/virtualreadingroom" target="_blank" class="btn-secondary">
-                                View Repository
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col lg:flex-row items-stretch">
-                    <div class="project-card flex flex-col lg:flex-row items-stretch overflow-hidden lg:w-1/2 lg:border-r-0">
-                        <div class="lg:w-[300px] w-full border-r border-black flex-shrink-0">
-                            <div class="project-image-container bg-[#F8FAFC]">
-                                <img src="Alex.png" alt="Alex Lynn Portfolio Screenshot (800x800)">
-                            </div>
-                        </div>
-                        <div class="flex-grow p-8 lg:p-10">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Alex Lynn Portfolio</h3>
-                            <p class="text-gray-700 mb-4 leading-relaxed text-sm">
-                                A clean, responsive personal portfolio built from scratch using simple HTML, JavaScript, and CSS to showcase creative work.
+                <div class="p-4 md:p-6 flex-grow flex flex-col justify-between">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">GroundHog Ratings.com</h3>
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                        <div class="md:w-2/3">
+                            <p class="text-gray-600 text-sm mb-4">
+                                A movie rating website that I built for my class. I built this using the LAMP stack (Linux, Apache, MySQL, and PHP). It uses a unique rating system that I invented by rating a movie by when you will watch it again. For example, 5 years.
                             </p>
-                            <p class="text-gray-800 font-semibold mb-2 text-sm">Technologies Used:</p>
-                            <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0 text-sm">
-                                <li class="mt-1"><img src="Icons/HTML.png" alt="HTML Icon" class="w-4 h-4 inline-block mr-1" style="vertical-align: middle;">HTML, <img src="Icons/CSS.png" alt="CSS Icon" class="w-4 h-4 inline-block mr-1" style="vertical-align: middle;">CSS, <img src="Icons/javascript.png" alt="JavaScript Icon" class="w-4 h-4 inline-block mr-1" style="vertical-align: middle;">JS</li>
+                        </div>
+                        <div class="md:w-1/3 flex flex-col items-start md:items-end">
+                            <ul class="flex flex-wrap gap-3 text-gray-700 mb-4 md:justify-end">
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/Apache.png" alt="Apache" class="w-4 h-4 mr-1">Apache</li>
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/mysql.png" alt="MySQL" class="w-4 h-4 mr-1">MySQL</li>
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/php.png" alt="PHP" class="w-4 h-4 mr-1">PHP</li>
                             </ul>
-                            <div class="flex flex-wrap gap-3">
-                                <a href="https://alparmelee.github.io/AlexPortfolio/index.html" target="_blank" class="btn-primary py-2 px-4 text-sm">
-                                    Live Demo
+                            <a href="http://groundhogratings.infinityfree.me/index.php" target="_blank" class="inline-block bg-black text-white px-6 py-2 rounded font-bold text-xs hover:bg-gray-800 transition">
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CramCraft -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row-reverse border border-gray-100 transform transition hover:scale-[1.01]">
+                <div class="relative md:w-1/5 flex-shrink-0 h-48 md:h-auto overflow-hidden bg-[#FF5A5F]">
+                    <img src="Cramcraft.png" alt="CramCraft" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4 md:p-6 flex-grow flex flex-col justify-between">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">CramCraft</h3>
+                    <div class="flex flex-col md:flex-row-reverse md:items-start md:justify-between gap-4">
+                        <div class="md:w-2/3">
+                            <p class="text-gray-600 text-sm mb-4">
+                                A flashcard creation website used for studying that I made for my class with 4 other people. I used the JAM stack (JavaScript, API, Markup) to make it. I handled the frontend while still helping with the backend. We used Supabase for the database.
+                            </p>
+                        </div>
+                        <div class="md:w-1/3 flex flex-col items-start md:items-start">
+                            <ul class="flex flex-wrap gap-3 text-gray-700 mb-4 md:justify-start">
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/HTML.png" alt="HTML" class="w-4 h-4 mr-1">HTML</li>
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/CSS.png" alt="CSS" class="w-4 h-4 mr-1">CSS</li>
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/javascript.png" alt="JS" class="w-4 h-4 mr-1">JS</li>
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/supabase.png" alt="Supabase" class="w-4 h-4 mr-1">Supabase</li>
+                            </ul>
+                            <a href="https://alparmelee.github.io/CramCraft/index.html" target="_blank" class="inline-block bg-black text-white px-6 py-2 rounded font-bold text-xs hover:bg-gray-800 transition">
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- On Your Feet -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row border border-gray-100 transform transition hover:scale-[1.01]">
+                <div class="relative md:w-1/5 flex-shrink-0 h-48 md:h-auto overflow-hidden bg-[#1E293B]">
+                    <img src="On Your Feet.png" alt="On Your Feet" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4 md:p-6 flex-grow flex flex-col justify-between">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">On Your Feet</h3>
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                        <div class="md:w-2/3">
+                            <p class="text-gray-600 text-sm mb-4">
+                                A 2D platformer video game that I made for fun with my friend who is majoring in digital media. We made this in Unity while I handled all the programming and artwork. C# was the coding language.
+                            </p>
+                        </div>
+                        <div class="md:w-1/3 flex flex-col items-start md:items-end">
+                            <ul class="flex flex-wrap gap-3 text-gray-700 mb-4 md:justify-end">
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/unity.png" alt="Unity" class="w-4 h-4 mr-1">Unity</li>
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/Csharp.png" alt="C#" class="w-4 h-4 mr-1">C#</li>
+                            </ul>
+                            <div class="flex gap-2">
+                                <a href="https://alex-lynn.itch.io/on-your-feet-demo" target="_blank" class="inline-block bg-black text-white px-4 py-2 rounded font-bold text-xs hover:bg-gray-800 transition">
+                                    Demo
+                                </a>
+                                <a href="https://github.com/alparmelee/On-Your-Feet" target="_blank" class="inline-block border border-gray-300 px-4 py-2 rounded font-bold text-xs hover:bg-gray-50 transition text-gray-600">
+                                    Repo
                                 </a>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="project-card flex flex-col lg:flex-row items-stretch overflow-hidden lg:w-1/2">
-                        <div class="lg:w-[300px] w-full border-r border-black flex-shrink-0">
-                            <div class="project-image-container bg-[#F1F5F9]">
-                                <img src="AP.png" alt="Andrew Parmelee Portfolio Screenshot (800x800)">
-                            </div>
-                        </div>
-                        <div class="flex-grow p-8 lg:p-10">
-                            <h3 class="text-2xl font-bold text-gray-900 mb-3">My Portfolio</h3>
-                            <p class="text-gray-700 mb-4 leading-relaxed text-sm">
-                                My personal professional portfolio designed to highlight my journey as an IT major, showcasing technical skills and creative projects.
+            <!-- FlickScore -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row-reverse border border-gray-100 transform transition hover:scale-[1.01]">
+                <div class="relative md:w-1/5 flex-shrink-0 h-48 md:h-auto overflow-hidden bg-[#0B0D17]">
+                    <img src="FlickScore.png" alt="FlickScore" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4 md:p-6 flex-grow flex flex-col justify-between">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">FlickScore.com</h3>
+                    <div class="flex flex-col md:flex-row-reverse md:items-start md:justify-between gap-4">
+                        <div class="md:w-2/3">
+                            <p class="text-gray-600 text-sm mb-4">
+                                Before I made groundhogratings.com, I made a different movie rating website, but this time it was made with the MERN stack (MongoDB, Express.js, React, and Node.js). It uses a standard ratings system. Rate from 1 to 5 stars and you can write reviews. Currently, I’m using a free account on Render to deploy, so if you want to check it out, you need to wait about a minute so it starts up.
                             </p>
-                            <p class="text-gray-800 font-semibold mb-2 text-sm">Technologies Used:</p>
-                            <ul class="flex flex-wrap tech-list text-gray-700 mb-4 space-x-4 ml-0 text-sm">
-                                <li class="mt-1"><img src="Icons/HTML.png" alt="HTML Icon" class="w-4 h-4 inline-block mr-1" style="vertical-align: middle;">HTML, <img src="Icons/CSS.png" alt="CSS Icon" class="w-4 h-4 inline-block mr-1" style="vertical-align: middle;">CSS, <img src="Icons/javascript.png" alt="JavaScript Icon" class="w-4 h-4 inline-block mr-1" style="vertical-align: middle;">JS</li>
+                        </div>
+                        <div class="md:w-1/3 flex flex-col items-start md:items-start">
+                            <ul class="flex flex-wrap gap-3 text-gray-700 mb-4 md:justify-start">
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/mongodb.png" alt="MongoDB" class="w-4 h-4 mr-1">MongoDB</li>
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/express-js.png" alt="Express" class="w-4 h-4 mr-1">Express</li>
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/React.png" alt="React" class="w-4 h-4 mr-1">React</li>
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/node.js.png" alt="Node" class="w-4 h-4 mr-1">Node.js</li>
                             </ul>
+                            <a href="https://movieratings-client.onrender.com/user-dashboard" target="_blank" class="inline-block bg-black text-white px-6 py-2 rounded font-bold text-xs hover:bg-gray-800 transition">
+                                Live Demo
+                            </a>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
 
-        <footer class="mt-12 text-center text-gray-600 text-sm" style="color: #000000;">
+            <!-- Virtual Reading Room -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row border border-gray-100 transform transition hover:scale-[1.01]">
+                <div class="relative md:w-1/5 flex-shrink-0 h-48 md:h-auto overflow-hidden bg-[#F1F5F9]">
+                    <img src="Virtual Reading Room.png" alt="Virtual Reading Room" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4 md:p-6 flex-grow flex flex-col justify-between">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Virtual Reading Room</h3>
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                        <div class="md:w-2/3">
+                            <p class="text-gray-600 text-sm mb-4">
+                                I built this for my Practical Programming in Python class. It’s a web app that ethically scrapes books from Project Gutenberg. I used Flask and SQLite for the backend and Pandas to handle the data. Hosted it on a webpage that I used Render to deploy. Once again, you have to wait to view everything because I’m using a free account.
+                            </p>
+                        </div>
+                        <div class="md:w-1/3 flex flex-col items-start md:items-end">
+                            <ul class="flex flex-wrap gap-3 text-gray-700 mb-4 md:justify-end">
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/Python.png" alt="Python" class="w-4 h-4 mr-1">Python</li>
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/Flask.png" alt="Flask" class="w-4 h-4 mr-1">Flask</li>
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/sqllite.png" alt="SQLite" class="w-4 h-4 mr-1">SQLite</li>
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/pandas.png" alt="Pandas" class="w-4 h-4 mr-1">Pandas</li>
+                            </ul>
+                            <div class="flex gap-2">
+                                <a href="https://virtualreadingroom-frontend.onrender.com/" target="_blank" class="inline-block bg-black text-white px-4 py-2 rounded font-bold text-xs hover:bg-gray-800 transition">
+                                    Demo
+                                </a>
+                                <a href="https://github.com/alparmelee/virtualreadingroom" target="_blank" class="inline-block border border-gray-300 px-4 py-2 rounded font-bold text-xs hover:bg-gray-50 transition text-gray-600">
+                                    Repo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alex Lynn Portfolio -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col md:flex-row-reverse border border-gray-100 transform transition hover:scale-[1.01]">
+                <div class="relative md:w-1/5 flex-shrink-0 h-48 md:h-auto overflow-hidden bg-[#F8FAFC]">
+                    <img src="Alex.png" alt="Alex Lynn Portfolio" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4 md:p-6 flex-grow flex flex-col justify-between">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Alex Lynn Portfolio</h3>
+                    <div class="flex flex-col md:flex-row-reverse md:items-start md:justify-between gap-4">
+                        <div class="md:w-2/3">
+                            <p class="text-gray-600 text-sm mb-4">
+                                A portfolio website I made for “Alex Lynn,” who I collaborated with when making “On Your Feet.” I made this with basic HTML, JS, and CSS, just like my own. You can view the games he made for his class here.
+                            </p>
+                        </div>
+                        <div class="md:w-1/3 flex flex-col items-start md:items-start">
+                            <ul class="flex flex-wrap gap-3 text-gray-700 mb-4 md:justify-start">
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/HTML.png" alt="HTML" class="w-4 h-4 mr-1">HTML</li>
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/CSS.png" alt="CSS" class="w-4 h-4 mr-1">CSS</li>
+                                <li class="flex items-center text-xs font-semibold bg-gray-100 px-2 py-1 rounded"><img src="Icons/javascript.png" alt="JS" class="w-4 h-4 mr-1">JS</li>
+                            </ul>
+                            <a href="https://alparmelee.github.io/AlexPortfolio/index.html" target="_blank" class="inline-block bg-black text-white px-6 py-2 rounded font-bold text-xs hover:bg-gray-800 transition">
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-12 text-center text-gray-600">
+        <div class="max-w-[1600px] mx-auto px-4">
             <p>&copy; 2025 Andrew Parmelee. All rights reserved.</p>
-            <p>IT Major, University of Central Florida</p>
-        </footer>
-    </div>
+            <p class="mt-2 text-sm">IT Major, University of Central Florida</p>
+        </div>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('dark-mode-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        const body = document.body;
+
+        // Check for saved preference
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+        }
+
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            
+            if (isDark) {
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
 </body>
 </html>
